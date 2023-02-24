@@ -9,9 +9,19 @@ const evReset = () => ({ type: constants.EV_RESET });
 
 export const updateCalculatorField = (
   fieldType, // baseStat, currentStat, iv, ev, level, natureModifier
-  statLabel, // hp, attack, defense, specialAttack, specialDefense, speed
+  statLabel, // hp, attack, defense, specialAttack, specialDefense, speed, level
   payload
-) => ({ type: `${constant(fieldType)}_${constant(statLabel)}`, payload });
+) => {
+  const type =
+    fieldType === "level"
+      ? "LEVEL"
+      : `${constant(fieldType)}_${constant(statLabel)}`;
+
+  return {
+    type,
+    payload,
+  };
+};
 
 const resetCalculator = () => (dispatch) =>
   batch(() => {

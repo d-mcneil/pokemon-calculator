@@ -2,7 +2,14 @@ import { combineReducers } from "redux";
 import * as constants from "./constants";
 
 // ************************************************************ initial states ************************************************************
-
+const initialStateLevel = { level: 1 };
+const initialStateNatureModifier = {
+  attack: 1,
+  defense: 1,
+  specialAttack: 1,
+  specialDefense: 1,
+  speed: 1,
+};
 const initialStateBaseStat = {
   hp: 0,
   attack: 0,
@@ -37,6 +44,34 @@ const initialStateEv = {
 };
 
 // ************************************************************ reducers ************************************************************
+const level = (state = initialStateLevel, action = {}) => {
+  switch (action.type) {
+    case constants.LEVEL:
+      return { ...state, level: action.payload };
+    default:
+      return state;
+  }
+};
+const natureModifier = (state = initialStateNatureModifier, action = {}) => {
+  switch (action.type) {
+    case constants.NATURE_MODIFIER_ATTACK:
+      return { ...state, attack: action.payload };
+    case constants.NATURE_MODIFIER_DEFENSE:
+      return { ...state, defense: action.payload };
+    case constants.NATURE_MODIFIER_SPECIAL_ATTACK:
+      return { ...state, specialAttack: action.payload };
+    case constants.NATURE_MODIFIER_SPECIAL_DEFENSE:
+      return { ...state, specialDefense: action.payload };
+    case constants.NATURE_MODIFIER_SPEED:
+      return { ...state, speed: action.payload };
+    case constants.NATURE_MODIFIER_SET:
+      return { ...state, ...action.payload };
+    case constants.NATURE_MODIFIER_RESET:
+      return { ...state, ...initialStateNatureModifier };
+    default:
+      return state;
+  }
+};
 const baseStat = (state = initialStateBaseStat, action = {}) => {
   switch (action.type) {
     case constants.BASE_STAT_HP:
@@ -127,4 +162,11 @@ const ev = (state = initialStateEv, action = {}) => {
 };
 // ************************************************************ combine reducers ************************************************************
 
-export const rootReducer = combineReducers({ baseStat, currentStat, iv, ev });
+export const rootReducer = combineReducers({
+  level,
+  natureModifier,
+  baseStat,
+  currentStat,
+  iv,
+  ev,
+});

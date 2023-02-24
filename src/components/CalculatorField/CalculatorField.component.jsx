@@ -15,8 +15,8 @@ const CalculatorField = ({
   maxValue = 252,
   minValue = 0,
   defaultValue,
-  fieldType, // baseStat, currentStat, iv, ev, level, natureModifier
-  statLabel = "", // hp, attack, defense, specialAttack, specialDefense, speed
+  statLabel, // hp, attack, defense, specialAttack, specialDefense, speed, level
+  fieldType, // baseStat, currentStat, iv, ev, natureModifier, level
 }) => {
   return (
     <>

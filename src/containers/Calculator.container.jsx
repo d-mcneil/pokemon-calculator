@@ -3,20 +3,81 @@ import { connect } from "react-redux";
 import CalculatorField from "../components/CalculatorField/CalculatorField.component";
 
 const mapStateToProps = (state) => ({
+  natureModifier: state.natureModifier,
   iv: state.iv,
   ev: state.ev,
   baseStat: state.baseStat,
   currentStat: state.currentStat,
+  level: state.level.level,
 });
 
-const Calculator = ({ iv, ev, baseStat, currentStat }) => {
+const Calculator = ({
+  level,
+  natureModifier,
+  iv,
+  ev,
+  baseStat,
+  currentStat,
+}) => {
   return (
     <>
-      level<br></br>
-      <CalculatorField statLabel={"level"} maxValue={100} minValue={1} />
+      Level<br></br>
+      <CalculatorField
+        statLabel="level"
+        fieldType="level"
+        maxValue={100}
+        minValue={1}
+        defaultValue={level}
+      />
       <br></br>
-      evs<br></br>
       {/*  */}
+      {/*  */}
+      {/*  */}
+      {/*  */}
+      {/*  */}
+      Nature Modifier<br></br>
+      {/*  */}
+      <CalculatorField
+        defaultValue={natureModifier.attack}
+        fieldType={"natureModifier"}
+        statLabel={"attack"}
+        maxValue={1.1}
+        minValue={0.9}
+      />
+      <CalculatorField
+        defaultValue={natureModifier.defense}
+        fieldType={"natureModifier"}
+        statLabel={"defense"}
+        maxValue={1.1}
+        minValue={0.9}
+      />
+      <CalculatorField
+        defaultValue={natureModifier.attack}
+        fieldType={"natureModifier"}
+        statLabel={"specialAttack"}
+        maxValue={1.1}
+        minValue={0.9}
+      />
+      <CalculatorField
+        defaultValue={natureModifier.attack}
+        fieldType={"natureModifier"}
+        statLabel={"specialDefense"}
+        maxValue={1.1}
+        minValue={0.9}
+      />
+      <CalculatorField
+        defaultValue={natureModifier.speed}
+        fieldType={"natureModifier"}
+        statLabel={"speed"}
+        maxValue={1.1}
+        minValue={0.9}
+      />
+      {/*  */}
+      {/*  */}
+      {/*  */}
+      {/*  */}
+      {/*  */}
+      <br></br>EVs<br></br>
       <CalculatorField defaultValue={ev.hp} fieldType={"ev"} statLabel={"hp"} />
       <CalculatorField
         defaultValue={ev.attack}
@@ -49,7 +110,7 @@ const Calculator = ({ iv, ev, baseStat, currentStat }) => {
       {/*  */}
       {/*  */}
       {/*  */}
-      <br></br>iv<br></br>
+      <br></br>IVs<br></br>
       <CalculatorField
         defaultValue={iv.hp}
         fieldType={"iv"}
@@ -93,7 +154,7 @@ const Calculator = ({ iv, ev, baseStat, currentStat }) => {
       {/*  */}
       {/*  */}
       {/*  */}
-      <br></br> current stat<br></br>
+      <br></br>Current Stats<br></br>
       <CalculatorField
         defaultValue={currentStat.hp}
         fieldType={"currentStat"}
@@ -142,7 +203,7 @@ const Calculator = ({ iv, ev, baseStat, currentStat }) => {
       {/*  */}
       {/*  */}
       {/*  */}
-      <br></br>base stat<br></br>
+      <br></br>Base Stats<br></br>
       <CalculatorField
         defaultValue={baseStat.hp}
         fieldType={"baseStat"}
