@@ -1,6 +1,6 @@
 import { batch } from "react-redux";
 import * as constants from "./constants";
-import { convertStringToConstantSyntax as constant } from "../functions";
+import { calculateCurrentStat, convertStringToConstantSyntax as constant } from "../functions";
 
 const baseStatReset = () => ({ type: constants.BASE_STAT_RESET });
 const currentStatReset = () => ({ type: constants.CURRENT_STAT_RESET });
@@ -16,12 +16,15 @@ export const updateCalculatorField = (
     fieldType === "level"
       ? "LEVEL"
       : `${constant(fieldType)}_${constant(statLabel)}`;
-
   return {
     type,
     payload,
   };
 };
+
+const calculateStat = () => {
+    return {calculateCurrentStat()}
+}
 
 const resetCalculator = () => (dispatch) =>
   batch(() => {

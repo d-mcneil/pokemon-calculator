@@ -1,4 +1,5 @@
 import React from "react";
+import { useEffect } from "react";
 import { connect } from "react-redux";
 import CalculatorField from "../components/CalculatorField/CalculatorField.component";
 
@@ -19,6 +20,22 @@ const Calculator = ({
   baseStat,
   currentStat,
 }) => {
+  // recalculate everything
+  useEffect(() => {}, [level]);
+
+  // recalculate changed stats only
+  useEffect(() => {}, [natureModifier]);
+  useEffect(() => {}, [baseStat]);
+
+  // recalculate ev and iv
+  useEffect(() => {}, [currentStat]);
+
+  // recalculate iv and current stat
+  useEffect(() => {}, [ev]);
+
+  // recalculate ev and current stat
+  useEffect(() => {}, [iv]);
+
   return (
     <>
       Level<br></br>
@@ -154,6 +171,50 @@ const Calculator = ({
       {/*  */}
       {/*  */}
       {/*  */}
+      <br></br>Base Stats<br></br>
+      <CalculatorField
+        defaultValue={baseStat.hp}
+        fieldType={"baseStat"}
+        statLabel={"hp"}
+        maxValue={255}
+      />
+      <CalculatorField
+        defaultValue={baseStat.attack}
+        fieldType={"baseStat"}
+        statLabel={"attack"}
+        maxValue={190}
+      />
+      <CalculatorField
+        defaultValue={baseStat.defense}
+        fieldType={"baseStat"}
+        statLabel={"defense"}
+        maxValue={230}
+      />
+      <CalculatorField
+        defaultValue={baseStat.specialAttack}
+        fieldType={"baseStat"}
+        statLabel={"specialAttack"}
+        maxValue={194}
+      />
+      <CalculatorField
+        defaultValue={baseStat.specialDefense}
+        fieldType={"baseStat"}
+        statLabel={"specialDefense"}
+        maxValue={230}
+      />
+      <CalculatorField
+        defaultValue={baseStat.speed}
+        fieldType={"baseStat"}
+        statLabel={"speed"}
+        maxValue={200}
+      />
+      {/*  */}
+      {/*  */}
+      {/*  */}
+      {/*  */}
+      {/*  */}
+      {/*  */}
+      {/*  */}
       <br></br>Current Stats<br></br>
       <CalculatorField
         defaultValue={currentStat.hp}
@@ -195,50 +256,6 @@ const Calculator = ({
         fieldType={"currentStat"}
         statLabel={"speed"}
         maxValue={548}
-      />
-      {/*  */}
-      {/*  */}
-      {/*  */}
-      {/*  */}
-      {/*  */}
-      {/*  */}
-      {/*  */}
-      <br></br>Base Stats<br></br>
-      <CalculatorField
-        defaultValue={baseStat.hp}
-        fieldType={"baseStat"}
-        statLabel={"hp"}
-        maxValue={255}
-      />
-      <CalculatorField
-        defaultValue={baseStat.attack}
-        fieldType={"baseStat"}
-        statLabel={"attack"}
-        maxValue={190}
-      />
-      <CalculatorField
-        defaultValue={baseStat.defense}
-        fieldType={"baseStat"}
-        statLabel={"defense"}
-        maxValue={230}
-      />
-      <CalculatorField
-        defaultValue={baseStat.specialAttack}
-        fieldType={"baseStat"}
-        statLabel={"specialAttack"}
-        maxValue={194}
-      />
-      <CalculatorField
-        defaultValue={baseStat.specialDefense}
-        fieldType={"baseStat"}
-        statLabel={"specialDefense"}
-        maxValue={230}
-      />
-      <CalculatorField
-        defaultValue={baseStat.speed}
-        fieldType={"baseStat"}
-        statLabel={"speed"}
-        maxValue={200}
       />
     </>
   );
