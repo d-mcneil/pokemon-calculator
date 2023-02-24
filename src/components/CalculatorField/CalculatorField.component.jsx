@@ -1,20 +1,36 @@
 import React from "react";
+import { connect } from "react-redux";
+import { convertStringToLabel as label } from "../../functions";
+import { updateCalculatorField } from "../../redux/actions";
 
 import "./CalculatorField.styles.scss";
 
+const mapDispatchToProps = (dispatch) => ({
+  onChange: (...args) => dispatch(updateCalculatorField(...args)),
+});
+
 const CalculatorField = ({
-  type = "number",
+  onChange,
+  inputType = "number",
   maxValue = 252,
   minValue = 0,
-  statLabel,
+  defaultValue,
+  fieldType, // baseStat, currentStat, iv, ev, level, natureModifier
+  statLabel = "", // hp, attack, defense, specialAttack, specialDefense, speed
 }) => {
   return (
     <>
-      <input type={type} max={maxValue} min={minValue}></input>
-      <span>{statLabel}</span>
+      <input
+        onChange={(event) => onChange(fieldType, statLabel, event.target.value)}
+        type={inputType}
+        max={maxValue}
+        min={minValue}
+        defaultValue={defaultValue}
+      ></input>
+      <span>{label(statLabel)}</span>
       <br></br>
     </>
   );
 };
 
-export default CalculatorField;
+export default connect(null, mapDispatchToProps)(CalculatorField);
