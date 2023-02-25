@@ -2,7 +2,9 @@ import React from "react";
 import { useEffect } from "react";
 import { connect } from "react-redux";
 import { FIELD_TYPE, STAT_NAME } from "../constantsNonRedux";
+import { updateCalculatorField } from "../redux/actions";
 import CalculatorField from "../components/CalculatorField/CalculatorField.component";
+import { calculateCurrentStat } from "../functions";
 
 const mapStateToProps = (state) => ({
   level: state.level.level,
@@ -14,6 +16,10 @@ const mapStateToProps = (state) => ({
   speed: state.speed,
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  updateStat: (...args) => dispatch(updateCalculatorField(...args)),
+});
+
 const Calculator = ({
   level,
   hp,
@@ -22,9 +28,19 @@ const Calculator = ({
   specialAttack,
   specialDefense,
   speed,
+  updateStat,
 }) => {
-  //   // recalculate everything
-  //   useEffect(() => {}, [level, hp.ev, hp.iv, hp.baseStat]);
+  //   // recalculate hp
+  useEffect(() => {
+    const currentHp = calculateCurrentStat(
+      true,
+      level,
+      hp.baseStat,
+      hp.iv,
+      hp.ev
+    );
+    updateStat(currentHp, FIELD_TYPE.currentStat, STAT_NAME.hp);
+  }, [level, hp.ev, hp.iv, hp.baseStat]);
   //   useEffect(() => {}, [level, attack.ev, attach.iv, attack.baseStat attack.natureModifier]);
 
   //  calculating stats
@@ -199,37 +215,44 @@ const Calculator = ({
       {/*  */}
       <br></br>Current Stats<br></br>
       <CalculatorField
+        key={hp.currentStat}
         defaultValue={hp.currentStat}
         fieldType={FIELD_TYPE.currentStat}
         statName={STAT_NAME.hp}
+        valueIsCalculated
       />
       <CalculatorField
         defaultValue={attack.currentStat}
         fieldType={FIELD_TYPE.currentStat}
         statName={STAT_NAME.attack}
+        valueIsCalculated
       />
       <CalculatorField
         defaultValue={defense.currentStat}
         fieldType={FIELD_TYPE.currentStat}
         statName={STAT_NAME.defense}
+        valueIsCalculated
       />
       <CalculatorField
         defaultValue={specialAttack.currentStat}
         fieldType={FIELD_TYPE.currentStat}
         statName={STAT_NAME.specialAttack}
+        valueIsCalculated
       />
       <CalculatorField
         defaultValue={specialDefense.currentStat}
         fieldType={FIELD_TYPE.currentStat}
         statName={STAT_NAME.specialDefense}
+        valueIsCalculated
       />
       <CalculatorField
         defaultValue={speed.currentStat}
         fieldType={FIELD_TYPE.currentStat}
         statName={STAT_NAME.speed}
+        valueIsCalculated
       />
     </>
   );
 };
 
-export default connect(mapStateToProps)(Calculator);
+export default connect(mapStateToProps, mapDispatchToProps)(Calculator);

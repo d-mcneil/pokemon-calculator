@@ -1,10 +1,10 @@
 export const calculateCurrentStat = (
   hp = false,
   level = 1,
-  natureModifier = 1,
   baseStat = 0,
   iv = 0,
-  ev = 0
+  ev = 0,
+  natureModifier = 1
 ) => {
   if (hp) {
     return ((2 * baseStat + iv + ev / 4) * level) / 100 + level + 10;

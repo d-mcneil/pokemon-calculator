@@ -13,8 +13,9 @@ const mapDispatchToProps = (dispatch) => ({
 const CalculatorField = ({
   updateCalculatorField,
   defaultValue,
+  valueIsCalculated = false,
   fieldType, // baseStat, currentStat, iv, ev, natureModifier, level
-  statName = "", // hp, attack, defense, specialAttack, specialDefense, speed, level
+  statName = "", // hp, attack, defense, specialAttack, specialDefense, speed
 }) => {
   //
   // This part wrapped in comments is a bit confusing....
@@ -58,7 +59,7 @@ const CalculatorField = ({
       }
     };
     // eslint-disable-next-line
-    if (value == 0) {
+    if (value === "") {
       return;
       // don't calculate anything if a field is left blank
     }
@@ -70,7 +71,7 @@ const CalculatorField = ({
     const target = event.target;
     let value = target.value;
     // eslint-disable-next-line
-    if (value == 0) {
+    if (value === "") {
       target.value = minValue;
       // the minimum value will be placed in the field if the field is empty when clicked off of
     }
@@ -85,6 +86,7 @@ const CalculatorField = ({
         max={maxValue}
         min={minValue}
         defaultValue={defaultValue}
+        readOnly={valueIsCalculated}
       ></input>
       <span>{label(statName)}</span>
       <br></br>
