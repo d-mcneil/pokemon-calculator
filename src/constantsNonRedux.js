@@ -14,6 +14,8 @@ export const FIELD_TYPE = {
   baseStat: "baseStat",
   currentStat: "currentStat",
   natureModifier: "natureModifier",
+  pokemon: "pokemon",
+  nature: "nature",
 };
 
 export const MAX_VALUE = {
