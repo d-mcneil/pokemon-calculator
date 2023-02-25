@@ -1,49 +1,56 @@
 import React from "react";
 import { useEffect } from "react";
 import { connect } from "react-redux";
+import {
+  FIELD_TYPE,
+  STAT_NAME,
+  //   MAX_VALUE,
+  //   MIN_VALUE,
+} from "../constantsNonRedux";
 import CalculatorField from "../components/CalculatorField/CalculatorField.component";
 
 const mapStateToProps = (state) => ({
-  natureModifier: state.natureModifier,
-  iv: state.iv,
-  ev: state.ev,
-  baseStat: state.baseStat,
-  currentStat: state.currentStat,
   level: state.level.level,
+  hp: state.hp,
+  attack: state.attack,
+  defense: state.defense,
+  specialAttack: state.specialAttack,
+  specialDefense: state.specialDefense,
+  speed: state.speed,
 });
 
 const Calculator = ({
   level,
-  natureModifier,
-  iv,
-  ev,
-  baseStat,
-  currentStat,
+  hp,
+  attack,
+  defense,
+  specialAttack,
+  specialDefense,
+  speed,
 }) => {
-  // recalculate everything
-  useEffect(() => {}, [level]);
+  //   // recalculate everything
+  //   useEffect(() => {}, [level]);
 
-  // recalculate changed stats only
-  useEffect(() => {}, [natureModifier]);
-  useEffect(() => {}, [baseStat]);
+  //   // recalculate changed stats only
+  //   useEffect(() => {}, []);
+  //   useEffect(() => {}, []);
 
-  // recalculate ev and iv
-  useEffect(() => {}, [currentStat]);
+  //   // recalculate ev and iv
+  //   useEffect(() => {}, []);
 
-  // recalculate iv and current stat
-  useEffect(() => {}, [ev]);
+  //   // recalculate iv and current stat
+  //   useEffect(() => {}, []);
 
-  // recalculate ev and current stat
-  useEffect(() => {}, [iv]);
+  //   // recalculate ev and current stat
+  //   useEffect(() => {}, []);
 
   return (
     <>
       Level<br></br>
       <CalculatorField
-        statLabel="level"
-        fieldType="level"
-        maxValue={100}
-        minValue={1}
+        fieldType={FIELD_TYPE.level}
+        // maxValue={MAX_VALUE.level}
+        // minValue={MIN_VALUE.level}
         defaultValue={level}
       />
       <br></br>
@@ -52,74 +59,90 @@ const Calculator = ({
       {/*  */}
       {/*  */}
       {/*  */}
-      Nature Modifier<br></br>
+      {/* Nature Modifier<br></br> */}
       {/*  */}
-      <CalculatorField
-        defaultValue={natureModifier.attack}
-        fieldType={"natureModifier"}
-        statLabel={"attack"}
+      {/* <CalculatorField
+        defaultValue={attack.natureModifier}
+        fieldType={FIELD_TYPE.natureModifier}
+        statName={STAT_NAME.attack}
         maxValue={1.1}
         minValue={0.9}
       />
       <CalculatorField
-        defaultValue={natureModifier.defense}
-        fieldType={"natureModifier"}
-        statLabel={"defense"}
+        defaultValue={defense.natureModifier}
+        fieldType={FIELD_TYPE.natureModifier}
+        statName={STAT_NAME.defense}
         maxValue={1.1}
         minValue={0.9}
       />
       <CalculatorField
-        defaultValue={natureModifier.attack}
-        fieldType={"natureModifier"}
-        statLabel={"specialAttack"}
+        defaultValue={specialAttack.natureModifier}
+        fieldType={FIELD_TYPE.natureModifier}
+        statName={STAT_NAME.specialAttack}
         maxValue={1.1}
         minValue={0.9}
       />
       <CalculatorField
-        defaultValue={natureModifier.attack}
-        fieldType={"natureModifier"}
-        statLabel={"specialDefense"}
+        defaultValue={specialDefense.natureModifier}
+        fieldType={FIELD_TYPE.natureModifier}
+        statName={STAT_NAME.specialDefense}
         maxValue={1.1}
         minValue={0.9}
       />
       <CalculatorField
-        defaultValue={natureModifier.speed}
-        fieldType={"natureModifier"}
-        statLabel={"speed"}
+        defaultValue={speed.natureModifier}
+        fieldType={FIELD_TYPE.natureModifier}
+        statName={STAT_NAME.speed}
         maxValue={1.1}
         minValue={0.9}
-      />
+      /> */}
       {/*  */}
       {/*  */}
       {/*  */}
       {/*  */}
       {/*  */}
       <br></br>EVs<br></br>
-      <CalculatorField defaultValue={ev.hp} fieldType={"ev"} statLabel={"hp"} />
       <CalculatorField
-        defaultValue={ev.attack}
-        fieldType={"ev"}
-        statLabel={"attack"}
+        defaultValue={hp.ev}
+        fieldType={FIELD_TYPE.ev}
+        statName={STAT_NAME.hp}
+        // maxValue={MAX_VALUE.ev}
+        // minValue={MIN_VALUE.ev}
       />
       <CalculatorField
-        defaultValue={ev.defense}
-        fieldType={"ev"}
-        statLabel={"defense"}
+        defaultValue={attack.ev}
+        fieldType={FIELD_TYPE.ev}
+        statName={STAT_NAME.attack}
+        // maxValue={MAX_VALUE.ev}
+        // minValue={MIN_VALUE.ev}
       />
       <CalculatorField
-        defaultValue={ev.specialAttack}
-        fieldType={"ev"}
-        statLabel={"specialAttack"}
+        defaultValue={defense.ev}
+        fieldType={FIELD_TYPE.ev}
+        statName={STAT_NAME.defense}
+        // maxValue={MAX_VALUE.ev}
+        // minValue={MIN_VALUE.ev}
       />
       <CalculatorField
-        defaultValue={ev.specialDefense}
-        fieldType={"ev"}
-        statLabel={"specialDefense"}
+        defaultValue={specialAttack.ev}
+        fieldType={FIELD_TYPE.ev}
+        statName={STAT_NAME.specialAttack}
+        // maxValue={MAX_VALUE.ev}
+        // minValue={MIN_VALUE.ev}
       />
       <CalculatorField
-        defaultValue={ev.speed}
-        fieldType={"ev"}
-        statLabel={"speed"}
+        defaultValue={specialDefense.ev}
+        fieldType={FIELD_TYPE.ev}
+        statName={STAT_NAME.specialDefense}
+        // maxValue={MAX_VALUE.ev}
+        // minValue={MIN_VALUE.ev}
+      />
+      <CalculatorField
+        defaultValue={speed.ev}
+        fieldType={FIELD_TYPE.ev}
+        statName={STAT_NAME.speed}
+        // maxValue={MAX_VALUE.ev}
+        // minValue={MIN_VALUE.ev}
       />
       {/*  */}
       {/*  */}
@@ -129,40 +152,46 @@ const Calculator = ({
       {/*  */}
       <br></br>IVs<br></br>
       <CalculatorField
-        defaultValue={iv.hp}
-        fieldType={"iv"}
-        statLabel={"hp"}
-        maxValue={31}
+        defaultValue={hp.iv}
+        fieldType={FIELD_TYPE.iv}
+        statName={STAT_NAME.hp}
+        // maxValue={MAX_VALUE.iv}
+        // minValue={MIN_VALUE.iv}
       />
       <CalculatorField
-        defaultValue={iv.attack}
-        fieldType={"iv"}
-        statLabel={"attack"}
-        maxValue={31}
+        defaultValue={attack.iv}
+        fieldType={FIELD_TYPE.iv}
+        statName={STAT_NAME.attack}
+        // maxValue={MAX_VALUE.iv}
+        // minValue={MIN_VALUE.iv}
       />
       <CalculatorField
-        defaultValue={iv.defense}
-        fieldType={"iv"}
-        statLabel={"defense"}
-        maxValue={31}
+        defaultValue={defense.iv}
+        fieldType={FIELD_TYPE.iv}
+        statName={STAT_NAME.defense}
+        // maxValue={MAX_VALUE.iv}
+        // minValue={MIN_VALUE.iv}
       />
       <CalculatorField
-        defaultValue={iv.specialAttack}
-        fieldType={"iv"}
-        statLabel={"specialAttack"}
-        maxValue={31}
+        defaultValue={specialAttack.iv}
+        fieldType={FIELD_TYPE.iv}
+        statName={STAT_NAME.specialAttack}
+        // maxValue={MAX_VALUE.iv}
+        // minValue={MIN_VALUE.iv}
       />
       <CalculatorField
-        defaultValue={iv.specialDefense}
-        fieldType={"iv"}
-        statLabel={"specialDefense"}
-        maxValue={31}
+        defaultValue={specialDefense.iv}
+        fieldType={FIELD_TYPE.iv}
+        statName={STAT_NAME.specialDefense}
+        // maxValue={MAX_VALUE.iv}
+        // minValue={MIN_VALUE.iv}
       />
       <CalculatorField
-        defaultValue={iv.speed}
-        fieldType={"iv"}
-        statLabel={"speed"}
-        maxValue={31}
+        defaultValue={speed.iv}
+        fieldType={FIELD_TYPE.iv}
+        statName={STAT_NAME.speed}
+        // maxValue={MAX_VALUE.iv}
+        // minValue={MIN_VALUE.iv}
       />
       {/*  */}
       {/*  */}
@@ -173,40 +202,46 @@ const Calculator = ({
       {/*  */}
       <br></br>Base Stats<br></br>
       <CalculatorField
-        defaultValue={baseStat.hp}
-        fieldType={"baseStat"}
-        statLabel={"hp"}
-        maxValue={255}
+        defaultValue={hp.baseStat}
+        fieldType={FIELD_TYPE.baseStat}
+        statName={STAT_NAME.hp}
+        // maxValue={MAX_VALUE.baseStat.hp}
+        // minValue={MIN_VALUE.baseStat.hp}
       />
       <CalculatorField
-        defaultValue={baseStat.attack}
-        fieldType={"baseStat"}
-        statLabel={"attack"}
-        maxValue={190}
+        defaultValue={attack.baseStat}
+        fieldType={FIELD_TYPE.baseStat}
+        statName={STAT_NAME.attack}
+        // maxValue={MAX_VALUE.baseStat.attack}
+        // minValue={MIN_VALUE.baseStat.attack}
       />
       <CalculatorField
-        defaultValue={baseStat.defense}
-        fieldType={"baseStat"}
-        statLabel={"defense"}
-        maxValue={230}
+        defaultValue={defense.baseStat}
+        fieldType={FIELD_TYPE.baseStat}
+        statName={STAT_NAME.defense}
+        // maxValue={MAX_VALUE.baseStat.defense}
+        // minValue={MIN_VALUE.baseStat.defense}
       />
       <CalculatorField
-        defaultValue={baseStat.specialAttack}
-        fieldType={"baseStat"}
-        statLabel={"specialAttack"}
-        maxValue={194}
+        defaultValue={specialAttack.baseStat}
+        fieldType={FIELD_TYPE.baseStat}
+        statName={STAT_NAME.specialAttack}
+        // maxValue={MAX_VALUE.baseStat.specialAttack}
+        // minValue={MIN_VALUE.baseStat.specialAttack}
       />
       <CalculatorField
-        defaultValue={baseStat.specialDefense}
-        fieldType={"baseStat"}
-        statLabel={"specialDefense"}
-        maxValue={230}
+        defaultValue={specialDefense.baseStat}
+        fieldType={FIELD_TYPE.baseStat}
+        statName={STAT_NAME.specialDefense}
+        // maxValue={MAX_VALUE.baseStat.specialDefense}
+        // minValue={MIN_VALUE.baseStat.specialDefense}
       />
       <CalculatorField
-        defaultValue={baseStat.speed}
-        fieldType={"baseStat"}
-        statLabel={"speed"}
-        maxValue={200}
+        defaultValue={speed.baseStat}
+        fieldType={FIELD_TYPE.baseStat}
+        statName={STAT_NAME.speed}
+        // maxValue={MAX_VALUE.baseStat.speed}
+        // minValue={MIN_VALUE.baseStat.speed}
       />
       {/*  */}
       {/*  */}
@@ -217,45 +252,46 @@ const Calculator = ({
       {/*  */}
       <br></br>Current Stats<br></br>
       <CalculatorField
-        defaultValue={currentStat.hp}
-        fieldType={"currentStat"}
-        statLabel={"hp"}
-        minValue={1}
-        maxValue={714}
+        defaultValue={hp.currentStat}
+        fieldType={FIELD_TYPE.currentStat}
+        statName={STAT_NAME.hp}
+        // maxValue={MAX_VALUE.currentStat.hp}
+        // minValue={MIN_VALUE.currentStat.hp}
       />
       <CalculatorField
-        defaultValue={currentStat.attack}
-        fieldType={"currentStat"}
-        statLabel={"attack"}
-        minValue={4}
-        maxValue={526}
+        defaultValue={attack.currentStat}
+        fieldType={FIELD_TYPE.currentStat}
+        statName={STAT_NAME.attack}
+        // maxValue={MAX_VALUE.currentStat.attack}
+        // minValue={MIN_VALUE.currentStat.attack}
       />
       <CalculatorField
-        defaultValue={currentStat.defense}
-        fieldType={"currentStat"}
-        statLabel={"defense"}
-        minValue={4}
-        maxValue={614}
+        defaultValue={defense.currentStat}
+        fieldType={FIELD_TYPE.currentStat}
+        statName={STAT_NAME.defense}
+        // maxValue={MAX_VALUE.currentStat.defense}
+        // minValue={MIN_VALUE.currentStat.defense}
       />
       <CalculatorField
-        defaultValue={currentStat.specialAttack}
-        fieldType={"currentStat"}
-        statLabel={"specialAttack"}
-        minValue={4}
-        maxValue={535}
+        defaultValue={specialAttack.currentStat}
+        fieldType={FIELD_TYPE.currentStat}
+        statName={STAT_NAME.specialAttack}
+        // maxValue={MAX_VALUE.currentStat.specialAttack}
+        // minValue={MIN_VALUE.currentStat.specialAttack}
       />
       <CalculatorField
-        defaultValue={currentStat.specialDefense}
-        fieldType={"currentStat"}
-        statLabel={"specialDefense"}
-        minValue={4}
-        maxValue={614}
+        defaultValue={specialDefense.currentStat}
+        fieldType={FIELD_TYPE.currentStat}
+        statName={STAT_NAME.specialDefense}
+        // maxValue={MAX_VALUE.currentStat.specialDefense}
+        // minValue={MIN_VALUE.currentStat.specialDefense}
       />
       <CalculatorField
-        defaultValue={currentStat.speed}
-        fieldType={"currentStat"}
-        statLabel={"speed"}
-        maxValue={548}
+        defaultValue={speed.currentStat}
+        fieldType={FIELD_TYPE.currentStat}
+        statName={STAT_NAME.speed}
+        // maxValue={MAX_VALUE.currentStat.speed}
+        // minValue={MIN_VALUE.currentStat.speed}
       />
     </>
   );

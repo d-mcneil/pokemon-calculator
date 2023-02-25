@@ -61,6 +61,9 @@ export const convertStringToConstantSyntax = (string) => {
 };
 
 export const convertStringToLabel = (string) => {
+  if (!string) {
+    return;
+  }
   if (string.length === 2) {
     return string.toUpperCase();
   }

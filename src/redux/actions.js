@@ -1,35 +1,47 @@
 import { batch } from "react-redux";
-import * as constants from "./constants";
-import { calculateCurrentStat, convertStringToConstantSyntax as constant } from "../functions";
+import * as reduxConstants from "./constants";
+import {
+  calculateCurrentStat,
+  convertStringToConstantSyntax as constant,
+} from "../functions";
 
-const baseStatReset = () => ({ type: constants.BASE_STAT_RESET });
-const currentStatReset = () => ({ type: constants.CURRENT_STAT_RESET });
-const ivReset = () => ({ type: constants.IV_RESET });
-const evReset = () => ({ type: constants.EV_RESET });
+const pokemonReset = () => ({ type: reduxConstants.POKEMON_RESET });
+const levelReset = () => ({ type: reduxConstants.LEVEL_RESET });
+const natureReset = () => ({ type: reduxConstants.NATURE_RESET });
+const hpReset = () => ({ type: reduxConstants.HP_RESET });
+const attackReset = () => ({ type: reduxConstants.ATTACK_RESET });
+const defenseReset = () => ({ type: reduxConstants.DEFENSE_RESET });
+const specialAttackReset = () => ({
+  type: reduxConstants.SPECIAL_ATTACK_RESET,
+});
+const specialDefenseReset = () => ({
+  type: reduxConstants.SPECIAL_DEFENSE_RESET,
+});
+const speedReset = () => ({ type: reduxConstants.SPEED_RESET });
 
 export const updateCalculatorField = (
-  fieldType, // baseStat, currentStat, iv, ev, level, natureModifier
-  statLabel, // hp, attack, defense, specialAttack, specialDefense, speed, level
-  payload
+  payload,
+  fieldType, // baseStat, currentStat, iv, ev, natureModifier, level, nature, pokemon
+  statName = "" // hp, attack, defense, specialAttack, specialDefense, speed
 ) => {
-  const type =
-    fieldType === "level"
-      ? "LEVEL"
-      : `${constant(fieldType)}_${constant(statLabel)}`;
+  const type = statName
+    ? `${constant(statName)}_${constant(fieldType)}_SET`
+    : `${constant(fieldType)}_SET`;
   return {
     type,
     payload,
   };
 };
 
-const calculateStat = () => {
-    return {calculateCurrentStat()}
-}
-
 const resetCalculator = () => (dispatch) =>
   batch(() => {
-    dispatch(baseStatReset());
-    dispatch(currentStatReset());
-    dispatch(ivReset());
-    dispatch(evReset());
+    dispatch(pokemonReset());
+    dispatch(levelReset());
+    dispatch(natureReset());
+    dispatch(hpReset());
+    dispatch(attackReset());
+    dispatch(defenseReset());
+    dispatch(specialAttackReset());
+    dispatch(specialDefenseReset());
+    dispatch(speedReset());
   });
