@@ -63,7 +63,7 @@ export const MIN_VALUE = {
     speed: 0,
   },
   currentStat: {
-    hp: 1,
+    hp: 11,
     attack: 4,
     defense: 4,
     specialAttack: 4,

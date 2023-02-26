@@ -7,7 +7,8 @@ import { MAX_VALUE, MIN_VALUE } from "../../constantsNonRedux";
 import "./CalculatorField.styles.scss";
 
 const mapDispatchToProps = (dispatch) => ({
-  updateCalculatorField: (...args) => dispatch(updateCalculatorField(...args)),
+  updateCalculatorField: (payload, fieldType, statName) =>
+    dispatch(updateCalculatorField(payload, fieldType, statName)),
 });
 
 const CalculatorField = ({
@@ -35,45 +36,36 @@ const CalculatorField = ({
   };
   const maxValue = setExtremeValue(MAX_VALUE);
   const minValue = setExtremeValue(MIN_VALUE);
-  //   const maxValue = MAX_VALUE[`${fieldType}`][`${statName}`]
-  //     ? MAX_VALUE[`${fieldType}`][`${statName}`]
-  //     : MAX_VALUE[`${fieldType}`];
-  //   const minValue =
-  //     MIN_VALUE[`${fieldType}`][`${statName}`] ||
-  //     MIN_VALUE[`${fieldType}`][`${statName}`] === 0
-  //       ? MIN_VALUE[`${fieldType}`][`${statName}`]
-  //       : MIN_VALUE[`${fieldType}`];
-  //
-  //
 
-  const onChange = (event) => {
+  const handleChange = (event) => {
     const target = event.target;
     let value = target.value;
     const validateValues = () => {
-      if (value < minValue) {
-        target.value = minValue;
-      } else if (value > maxValue) {
+      // if (value < minValue) {
+      //   target.value = minValue;
+      // } else
+      if (value > maxValue) {
         target.value = maxValue;
       } else {
         target.value = Math.round(value);
       }
     };
     // eslint-disable-next-line
-    if (value === "") {
+    if (value === "" || value < minValue) {
       return;
-      // don't calculate anything if a field is left blank
+      // don't calculate anything if a field is left blank or the input is below the min value
     }
     validateValues();
     updateCalculatorField(target.value, fieldType, statName);
   };
 
-  const onBlur = (event) => {
+  const handleBlur = (event) => {
     const target = event.target;
     let value = target.value;
     // eslint-disable-next-line
-    if (value === "") {
+    if (value === "" || value < minValue) {
       target.value = minValue;
-      // the minimum value will be placed in the field if the field is empty when clicked off of
+      // the minimum value will be placed in the field if the field is empty or if the input is below the min value
       updateCalculatorField(target.value, fieldType, statName);
     }
   };
@@ -81,8 +73,8 @@ const CalculatorField = ({
   return (
     <>
       <input
-        onChange={onChange}
-        onBlur={onBlur}
+        onChange={handleChange}
+        onBlur={handleBlur}
         type={"number"}
         max={maxValue}
         min={minValue}

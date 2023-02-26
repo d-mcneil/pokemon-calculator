@@ -51,12 +51,13 @@ const NatureSelector = ({ updateNature }) => {
   };
 
   return (
-    <>
-      <select onChange={onChange}>
-        <option>Nature</option>
-        {renderNatureOptions()}
-      </select>
-    </>
+    <select defaultValue="nature" onChange={onChange}>
+      <option disabled value="nature" key="nature">
+        Nature
+      </option>
+      {renderNatureOptions()}
+    </select>
   );
 };
+
 export default connect(null, mapDispatchToProps)(NatureSelector);
