@@ -7,6 +7,15 @@ export const STAT_NAME = {
   speed: "speed",
 };
 
+export const STAT_NAME_SHORT = {
+  hp: "hp",
+  attack: "atk",
+  defense: "def",
+  specialAttack: "spA",
+  specialDefense: "spD",
+  speed: "spe",
+};
+
 export const FIELD_TYPE = {
   level: "level",
   iv: "iv",
@@ -15,7 +24,7 @@ export const FIELD_TYPE = {
   currentStat: "currentStat",
 };
 
-const SELECTOR_TYPE = {
+export const SELECTOR_TYPE = {
   natureModifier: "natureModifier",
   nature: "nature",
   pokemon: "pokemon",
@@ -65,7 +74,7 @@ export const MIN_VALUE = {
   ev: 0,
 };
 
-const NATURE = [
+export const NATURE = [
   //  ********************************************** raise attack **************************************************
   {
     name: "lonely",

@@ -4,7 +4,7 @@ import * as constants from "./constants";
 // ************************************************************ initial states ************************************************************
 const initialStatePokemon = { pokemon: "" };
 const initialStateLevel = { level: 1 };
-const initialStateNature = { nature: "adamant" };
+const initialStateNature = { nature: "" };
 const initialStateHp = { baseStat: 0, currentStat: 11, iv: 0, ev: 0 };
 const initialStateAttack = {
   baseStat: 0,

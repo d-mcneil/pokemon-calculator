@@ -7,9 +7,17 @@ export const calculateCurrentStat = (
   natureModifier = 1
 ) => {
   if (hp) {
-    return ((2 * baseStat + iv + ev / 4) * level) / 100 + level + 10;
+    return (
+      Math.floor(((2 * baseStat + iv + Math.floor(ev / 4)) * level) / 100) +
+      level +
+      10
+    );
   } else {
-    return (((2 * baseStat + iv + ev / 4) * level) / 100 + 5) * natureModifier;
+    return Math.floor(
+      (Math.floor(((2 * baseStat + iv + Math.floor(ev / 4)) * level) / 100) +
+        5) *
+        natureModifier
+    );
   }
 };
 

@@ -1,7 +1,7 @@
 import { batch } from "react-redux";
 // import * as reduxConstants from "./constants";
 import { convertStringToConstantSyntax as constant } from "../functions";
-import { STAT_NAME, FIELD_TYPE } from "../constantsNonRedux";
+import { STAT_NAME, FIELD_TYPE, SELECTOR_TYPE } from "../constantsNonRedux";
 
 export const updateCalculatorField = (
   payload,
@@ -13,6 +13,22 @@ export const updateCalculatorField = (
     : `${constant(fieldType)}_SET`,
   payload: Number(payload),
 });
+export const updateNatureModifiers = (payload) => (dispatch) => {
+  batch(() => {
+    Object.keys(STAT_NAME)
+      .slice(1)
+      .map((statName) =>
+        dispatch(
+          updateCalculatorField(
+            payload[statName],
+            SELECTOR_TYPE.natureModifier,
+            STAT_NAME[statName]
+          )
+        )
+      );
+  });
+};
+
 const resetCalculatorField = (fieldTypeOrStatName) => ({
   type: `${constant(fieldTypeOrStatName)}_RESET`,
 });
