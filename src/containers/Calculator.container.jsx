@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { FIELD_TYPE, STAT_NAME } from "../constantsNonRedux";
 import { updateCalculatorField } from "../redux/actions";
 import CalculatorField from "../components/CalculatorField/CalculatorField.component";
-import { calculateCurrentStat } from "../functions";
+import { calculateCurrentStat, convertStringToLabel } from "../functions";
 
 const mapStateToProps = (state) => ({
   level: state.level.level,
@@ -28,6 +28,7 @@ const Calculator = ({
   specialAttack,
   specialDefense,
   speed,
+  calculatedFieldType = "currentStat", // ***************** will move this to the browser router component in the future, currentState is for development purposes
   updateStat,
 }) => {
   //
@@ -72,12 +73,58 @@ const Calculator = ({
   //prettier-ignore
   useCalculateCurrentStat(speed, level, FIELD_TYPE.currentStat, STAT_NAME.speed);
 
+  const renderCalculatorFields = () => {
+    const fieldTypeArray = Object.keys(FIELD_TYPE);
+    const statNameArray = Object.keys(STAT_NAME);
+    // prettier-ignore
+    const statArray = [ hp, attack, defense, specialAttack, specialDefense, speed];
+    return (
+      <>
+        {" "}
+        <CalculatorField
+          key={FIELD_TYPE.level}
+          defaultValue={level}
+          fieldType={FIELD_TYPE.level}
+        />
+        {/* adding a field for every fieldType for every stat */}
+        {fieldTypeArray.slice(1).map((fieldType) => {
+          const valueIsCalculated =
+            fieldType === calculatedFieldType ? true : false; // if the value is calculated, then it has a more complex key and the input field is read-only
+          return (
+            <>
+              <br></br>
+              {convertStringToLabel(fieldType)}
+              <br></br>
+              {statNameArray.map((statName) => {
+                const index = statNameArray.indexOf(statName);
+                const defaultValue = statArray[index][fieldType]; // the (numerical) value of stat.fieldType --- examples: hp.currentStat, defense.iv, specialAttack.ev
+                const key = `${fieldType}-${statName}${
+                  valueIsCalculated ? `-${defaultValue}` : "" // the default value tag is added to the key if it is calculated so that it will rerender every time its value is changed
+                }`;
+                return (
+                  <>
+                    <CalculatorField
+                      key={key}
+                      defaultValue={defaultValue}
+                      fieldType={fieldType}
+                      statName={statName}
+                      valueIsCalculated={valueIsCalculated}
+                    />
+                  </>
+                );
+              })}
+            </>
+          );
+        })}
+      </>
+    );
+  };
   return (
     <>
       Level<br></br>
-      <CalculatorField defaultValue={level} fieldType={FIELD_TYPE.level} />
+      {renderCalculatorFields()}
       {/* <NatureSelector /> */}
-      <br></br>EVs<br></br>
+      {/* <br></br>EVs<br></br>
       <CalculatorField
         defaultValue={hp.ev}
         fieldType={FIELD_TYPE.ev}
@@ -108,12 +155,6 @@ const Calculator = ({
         fieldType={FIELD_TYPE.ev}
         statName={STAT_NAME.speed}
       />
-      {/*  */}
-      {/*  */}
-      {/*  */}
-      {/*  */}
-      {/*  */}
-      {/*  */}
       <br></br>IVs<br></br>
       <CalculatorField
         defaultValue={hp.iv}
@@ -145,13 +186,6 @@ const Calculator = ({
         fieldType={FIELD_TYPE.iv}
         statName={STAT_NAME.speed}
       />
-      {/*  */}
-      {/*  */}
-      {/*  */}
-      {/*  */}
-      {/*  */}
-      {/*  */}
-      {/*  */}
       <br></br>Base Stats<br></br>
       <CalculatorField
         defaultValue={hp.baseStat}
@@ -183,13 +217,6 @@ const Calculator = ({
         fieldType={FIELD_TYPE.baseStat}
         statName={STAT_NAME.speed}
       />
-      {/*  */}
-      {/*  */}
-      {/*  */}
-      {/*  */}
-      {/*  */}
-      {/*  */}
-      {/*  */}
       <br></br>Current Stats<br></br>
       <CalculatorField
         key={`${hp.currentStat}-${hp.speed}`}
@@ -232,7 +259,7 @@ const Calculator = ({
         fieldType={FIELD_TYPE.currentStat}
         statName={STAT_NAME.speed}
         valueIsCalculated
-      />
+      /> */}
     </>
   );
 };

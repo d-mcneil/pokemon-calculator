@@ -8,11 +8,11 @@ export const STAT_NAME = {
 };
 
 export const FIELD_TYPE = {
+  level: "level",
   iv: "iv",
   ev: "ev",
   baseStat: "baseStat",
   currentStat: "currentStat",
-  level: "level",
 };
 
 const SELECTOR_TYPE = {
