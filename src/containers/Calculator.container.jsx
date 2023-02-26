@@ -6,7 +6,7 @@ import {
   calculateCurrentStat,
   convertStringToLabel as label,
 } from "../functions";
-import { FIELD_TYPE, STAT_NAME } from "../constantsNonRedux";
+import { FIELD_TYPE, STAT_NAME, SELECTOR_TYPE } from "../constantsNonRedux";
 import CalculatorField from "../components/CalculatorField/CalculatorField.component";
 import NatureSelector from "../components/NatureSelector/NatureSelector.component";
 import Button from "../components/Button/Button.component";
@@ -19,6 +19,7 @@ const mapStateToProps = (state) => ({
   specialAttack: state.specialAttack,
   specialDefense: state.specialDefense,
   speed: state.speed,
+  resetIndex: state.resetIndex.resetIndex,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -35,6 +36,7 @@ const Calculator = ({
   specialAttack,
   specialDefense,
   speed,
+  resetIndex,
   calculatedFieldType = "currentStat", // ***************** will move this to the browser router component in the future, currentState is for development purposes
   handleUpdateCalculatorField,
   handleResetCalculator,
@@ -91,7 +93,7 @@ const Calculator = ({
     return (
       <>
         <CalculatorField
-          key={FIELD_TYPE.level}
+          key={`${resetIndex}-${FIELD_TYPE.level}`}
           defaultValue={level}
           fieldType={FIELD_TYPE.level}
         />
@@ -109,7 +111,7 @@ const Calculator = ({
               {statNameArray.map((statName) => {
                 const index = statNameArray.indexOf(statName);
                 const defaultValue = statArray[index][fieldType]; // the (numerical) value of stat.fieldType --- examples: hp.currentStat, defense.iv, specialAttack.ev
-                const key = `${fieldType}-${statName}${
+                const key = `${resetIndex}-${fieldType}-${statName}${
                   valueIsCalculated ? `-${defaultValue}` : "" // the default value tag is added to the key if it is calculated so that it will rerender every time its value is changed
                 }`;
 
@@ -134,7 +136,7 @@ const Calculator = ({
       <Button onClick={handleResetCalculator} text={"Reset Calculator"} />
       <br></br>
       <br></br>
-      <NatureSelector />
+      <NatureSelector key={`${resetIndex}-${SELECTOR_TYPE.nature}`} />
       <br></br>
       <br></br>
       Level

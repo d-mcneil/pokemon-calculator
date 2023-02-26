@@ -2,9 +2,12 @@ import { combineReducers } from "redux";
 import * as constants from "./constants";
 
 // ************************************************************ initial states ************************************************************
+const initialStateResetIndex = {
+  resetIndex: 0,
+};
 const initialStatePokemon = { pokemon: "" };
 const initialStateLevel = { level: 1 };
-const initialStateNature = { nature: "" };
+const initialStateNature = { nature: "nature" };
 const initialStateHp = { baseStat: 0, currentStat: 11, iv: 0, ev: 0 };
 const initialStateAttack = {
   baseStat: 0,
@@ -42,6 +45,14 @@ const initialStateSpeed = {
   natureModifier: 1,
 };
 // ************************************************************ reducers ************************************************************
+const resetIndex = (state = initialStateResetIndex, action = {}) => {
+  switch (action.type) {
+    case constants.INCREMENT_RESET_INDEX:
+      return { ...state, resetIndex: state.resetIndex + 1 };
+    default:
+      return state;
+  }
+};
 const pokemon = (state = initialStatePokemon, action = {}) => {
   switch (action.type) {
     case constants.POKEMON_SET:
@@ -180,6 +191,7 @@ const speed = (state = initialStateSpeed, action = {}) => {
 };
 // ************************************************************ combine reducers ************************************************************
 export const rootReducer = combineReducers({
+  resetIndex,
   pokemon,
   level,
   nature,

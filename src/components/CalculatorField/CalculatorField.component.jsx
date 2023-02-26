@@ -8,7 +8,7 @@ import StatLabel from "../StatLabel/StatLabel.component";
 
 const mapDispatchToProps = (dispatch) => ({
   updateCalculatorField: (payload, fieldType, statName) =>
-    dispatch(updateCalculatorField(payload, fieldType, statName)),
+    dispatch(updateCalculatorField(Number(payload), fieldType, statName)),
 });
 
 const CalculatorField = ({

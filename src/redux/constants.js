@@ -1,3 +1,4 @@
+export const INCREMENT_RESET_INDEX = "INCREMENT_RESET_INDEX";
 // route
 // game
 export const POKEMON_SET = "POKEMON_SET";

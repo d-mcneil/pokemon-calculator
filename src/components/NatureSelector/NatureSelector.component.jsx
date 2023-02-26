@@ -4,14 +4,14 @@ import { convertStringToLabel as label } from "../../functions";
 import { NATURE, STAT_NAME_SHORT } from "../../constantsNonRedux";
 
 import "./NatureSelector.styles.scss";
-import { updateNatureModifiers } from "../../redux/actions";
+import { updateNature } from "../../redux/actions";
 
 const mapDispatchToProps = (dispatch) => ({
-  updateNature: (payloadObject) =>
-    dispatch(updateNatureModifiers(payloadObject)),
+  handleUpdateNature: (natureModifierPayload, natureValue) =>
+    dispatch(updateNature(natureModifierPayload, natureValue)),
 });
 
-const NatureSelector = ({ updateNature }) => {
+const NatureSelector = ({ handleUpdateNature }) => {
   const renderNatureOptions = () => {
     return NATURE.map((nature) => {
       const statIncreased = nature.increases
@@ -41,13 +41,16 @@ const NatureSelector = ({ updateNature }) => {
     const nature = event.target.selectedOptions[0];
     const { attack, defense, specialattack, specialdefense, speed } =
       nature.dataset;
-    updateNature({
-      attack,
-      defense,
-      specialAttack: specialattack,
-      specialDefense: specialdefense,
-      speed,
-    });
+    handleUpdateNature(
+      {
+        attack: Number(attack),
+        defense: Number(defense),
+        specialAttack: Number(specialattack),
+        specialDefense: Number(specialdefense),
+        speed: Number(speed),
+      },
+      nature.value
+    );
   };
 
   return (
