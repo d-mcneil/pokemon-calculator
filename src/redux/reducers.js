@@ -8,35 +8,35 @@ const initialStateNature = { nature: "adamant" };
 const initialStateHp = { baseStat: 0, currentStat: 11, iv: 0, ev: 0 };
 const initialStateAttack = {
   baseStat: 0,
-  currentStat: 4,
+  currentStat: 5,
   iv: 0,
   ev: 0,
   natureModifier: 1,
 };
 const initialStateDefense = {
   baseStat: 0,
-  currentStat: 4,
+  currentStat: 5,
   iv: 0,
   ev: 0,
   natureModifier: 1,
 };
 const initialStateSpecialAttack = {
   baseStat: 0,
-  currentStat: 4,
+  currentStat: 5,
   iv: 0,
   ev: 0,
   natureModifier: 1,
 };
 const initialStateSpecialDefense = {
   baseStat: 0,
-  currentStat: 4,
+  currentStat: 5,
   iv: 0,
   ev: 0,
   natureModifier: 1,
 };
 const initialStateSpeed = {
   baseStat: 0,
-  currentStat: 4,
+  currentStat: 5,
   iv: 0,
   ev: 0,
   natureModifier: 1,

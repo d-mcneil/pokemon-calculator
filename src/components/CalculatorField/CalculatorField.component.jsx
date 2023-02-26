@@ -14,7 +14,7 @@ const CalculatorField = ({
   updateCalculatorField,
   defaultValue,
   valueIsCalculated = false,
-  fieldType, // baseStat, currentStat, iv, ev, natureModifier, level
+  fieldType, // baseStat, currentStat, iv, ev, level
   statName = "", // hp, attack, defense, specialAttack, specialDefense, speed
 }) => {
   //
@@ -74,6 +74,7 @@ const CalculatorField = ({
     if (value === "") {
       target.value = minValue;
       // the minimum value will be placed in the field if the field is empty when clicked off of
+      updateCalculatorField(target.value, fieldType, statName);
     }
   };
 

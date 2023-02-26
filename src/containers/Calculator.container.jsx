@@ -30,76 +30,53 @@ const Calculator = ({
   speed,
   updateStat,
 }) => {
-  //   // recalculate hp
+  //
+
   useEffect(() => {
-    const currentHp = calculateCurrentStat(
-      true,
-      level,
-      hp.baseStat,
-      hp.iv,
-      hp.ev
+    // recalculate hp
+    updateStat(
+      calculateCurrentStat(true, level, hp.baseStat, hp.iv, hp.ev),
+      FIELD_TYPE.currentStat,
+      STAT_NAME.hp
     );
-    updateStat(currentHp, FIELD_TYPE.currentStat, STAT_NAME.hp);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [level, hp.ev, hp.iv, hp.baseStat]);
-  //   useEffect(() => {}, [level, attack.ev, attach.iv, attack.baseStat attack.natureModifier]);
 
-  //  calculating stats
+  const useCalculateCurrentStat = (stat, level, fieldType, statName) => {
+    //recalculate other stats
+    return useEffect(() => {
+      updateStat(
+        calculateCurrentStat(
+          false,
+          level,
+          stat.baseStat,
+          stat.iv,
+          stat.ev,
+          stat.natureModifier
+        ),
+        fieldType,
+        statName
+      );
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [level, stat.ev, stat.iv, stat.baseStat, stat.natureModifier]);
+  };
 
-  //   // recalculate changed stats only
-  //   useEffect(() => {}, []);
-  //   useEffect(() => {}, []);
-
-  //   // recalculate ev and iv
-  //   useEffect(() => {}, []);
-
-  //   // recalculate iv and current stat
-  //   useEffect(() => {}, []);
-
-  //   // recalculate ev and current stat
-  //   useEffect(() => {}, []);
+  //prettier-ignore
+  useCalculateCurrentStat(attack, level, FIELD_TYPE.currentStat, STAT_NAME.attack);
+  //prettier-ignore
+  useCalculateCurrentStat(defense, level, FIELD_TYPE.currentStat, STAT_NAME.defense);
+  //prettier-ignore
+  useCalculateCurrentStat(specialAttack, level, FIELD_TYPE.currentStat, STAT_NAME.specialAttack);
+  //prettier-ignore
+  useCalculateCurrentStat(specialDefense, level, FIELD_TYPE.currentStat, STAT_NAME.specialDefense);
+  //prettier-ignore
+  useCalculateCurrentStat(speed, level, FIELD_TYPE.currentStat, STAT_NAME.speed);
 
   return (
     <>
       Level<br></br>
       <CalculatorField defaultValue={level} fieldType={FIELD_TYPE.level} />
-      <br></br>
-      {/*  */}
-      {/*  */}
-      {/*  */}
-      {/*  */}
-      {/*  */}
-      {/* Nature Modifier<br></br> */}
-      {/*  */}
-      {/* <CalculatorField
-        defaultValue={attack.natureModifier}
-        fieldType={FIELD_TYPE.natureModifier}
-        statName={STAT_NAME.attack}
-      />
-      <CalculatorField
-        defaultValue={defense.natureModifier}
-        fieldType={FIELD_TYPE.natureModifier}
-        statName={STAT_NAME.defense}
-      />
-      <CalculatorField
-        defaultValue={specialAttack.natureModifier}
-        fieldType={FIELD_TYPE.natureModifier}
-        statName={STAT_NAME.specialAttack}
-      />
-      <CalculatorField
-        defaultValue={specialDefense.natureModifier}
-        fieldType={FIELD_TYPE.natureModifier}
-        statName={STAT_NAME.specialDefense}
-      />
-      <CalculatorField
-        defaultValue={speed.natureModifier}
-        fieldType={FIELD_TYPE.natureModifier}
-        statName={STAT_NAME.speed}
-      /> */}
-      {/*  */}
-      {/*  */}
-      {/*  */}
-      {/*  */}
-      {/*  */}
+      {/* <NatureSelector /> */}
       <br></br>EVs<br></br>
       <CalculatorField
         defaultValue={hp.ev}
@@ -215,37 +192,42 @@ const Calculator = ({
       {/*  */}
       <br></br>Current Stats<br></br>
       <CalculatorField
-        key={hp.currentStat}
+        key={`${hp.currentStat}-${hp.speed}`}
         defaultValue={hp.currentStat}
         fieldType={FIELD_TYPE.currentStat}
         statName={STAT_NAME.hp}
         valueIsCalculated
       />
       <CalculatorField
+        key={`${attack.currentStat}-${STAT_NAME.attack}`}
         defaultValue={attack.currentStat}
         fieldType={FIELD_TYPE.currentStat}
         statName={STAT_NAME.attack}
         valueIsCalculated
       />
       <CalculatorField
+        key={`${defense.currentStat}-${STAT_NAME.defense}`}
         defaultValue={defense.currentStat}
         fieldType={FIELD_TYPE.currentStat}
         statName={STAT_NAME.defense}
         valueIsCalculated
       />
       <CalculatorField
+        key={`${specialAttack.currentStat}-${STAT_NAME.specialAttack}`}
         defaultValue={specialAttack.currentStat}
         fieldType={FIELD_TYPE.currentStat}
         statName={STAT_NAME.specialAttack}
         valueIsCalculated
       />
       <CalculatorField
+        key={`${specialDefense.currentStat}-${STAT_NAME.specialDefense}`}
         defaultValue={specialDefense.currentStat}
         fieldType={FIELD_TYPE.currentStat}
         statName={STAT_NAME.specialDefense}
         valueIsCalculated
       />
       <CalculatorField
+        key={`${speed.currentStat}-${STAT_NAME.speed}`}
         defaultValue={speed.currentStat}
         fieldType={FIELD_TYPE.currentStat}
         statName={STAT_NAME.speed}

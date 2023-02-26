@@ -16,10 +16,10 @@ export const calculateCurrentStat = (
 export const calculateEv = (
   hp = false,
   level = 1,
-  natureModifier = 1,
   baseStat = 0,
   iv = 0,
-  currentStat = (hp = true ? 11 : 4)
+  currentStat = (hp = true ? 11 : 4),
+  natureModifier = 1
 ) => {
   if (hp) {
     return (((currentStat - level - 10) * 100) / level - iv - 2 * baseStat) * 4;
@@ -34,10 +34,10 @@ export const calculateEv = (
 export const calculateIv = (
   hp = false,
   level = 1,
-  natureModifier = 1,
   baseStat = 0,
   ev = 0,
-  currentStat = (hp = true ? 11 : 4)
+  currentStat = (hp = true ? 11 : 4),
+  natureModifier = 1
 ) => {
   if (hp) {
     return ((currentStat - level - 10) * 100) / level - 2 * baseStat - ev / 4;
