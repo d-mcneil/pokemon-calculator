@@ -65,7 +65,7 @@ const level = (state = initialStateLevel, action = {}) => {
 const nature = (state = initialStateNature, action = {}) => {
   switch (action.type) {
     case constants.NATURE_SET:
-      return { ...state, level: action.payload };
+      return { ...state, nature: action.payload };
     case constants.NATURE_RESET:
       return { ...state, ...initialStateNature };
     default:

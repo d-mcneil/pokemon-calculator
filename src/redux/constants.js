@@ -4,7 +4,7 @@ export const POKEMON_SET = "POKEMON_SET";
 export const POKEMON_RESET = "POKEMON_RESET";
 // ***************************************************************************************************************
 export const LEVEL_SET = "LEVEL_SET";
-export const LEVEL_RESET = "LEVEL_RESET_RESET";
+export const LEVEL_RESET = "LEVEL_RESET";
 // ***************************************************************************************************************
 export const NATURE_SET = "NATURE_SET";
 export const NATURE_RESET = "NATURE_RESET";

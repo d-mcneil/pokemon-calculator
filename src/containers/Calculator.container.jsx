@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { useEffect } from "react";
-import { updateCalculatorField } from "../redux/actions";
+import { updateCalculatorField, resetCalculator } from "../redux/actions";
 import {
   calculateCurrentStat,
   convertStringToLabel as label,
@@ -9,6 +9,7 @@ import {
 import { FIELD_TYPE, STAT_NAME } from "../constantsNonRedux";
 import CalculatorField from "../components/CalculatorField/CalculatorField.component";
 import NatureSelector from "../components/NatureSelector/NatureSelector.component";
+import Button from "../components/Button/Button.component";
 
 const mapStateToProps = (state) => ({
   level: state.level.level,
@@ -21,8 +22,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  updateStat: (payload, fieldType, statName) =>
+  handleUpdateCalculatorField: (payload, fieldType, statName) =>
     dispatch(updateCalculatorField(payload, fieldType, statName)),
+  handleResetCalculator: () => dispatch(resetCalculator()),
 });
 
 const Calculator = ({
@@ -34,13 +36,14 @@ const Calculator = ({
   specialDefense,
   speed,
   calculatedFieldType = "currentStat", // ***************** will move this to the browser router component in the future, currentState is for development purposes
-  updateStat,
+  handleUpdateCalculatorField,
+  handleResetCalculator,
 }) => {
   //
 
   useEffect(() => {
     // recalculate hp
-    updateStat(
+    handleUpdateCalculatorField(
       calculateCurrentStat(true, level, hp.baseStat, hp.iv, hp.ev),
       FIELD_TYPE.currentStat,
       STAT_NAME.hp
@@ -52,7 +55,7 @@ const Calculator = ({
     // custom hook
     //recalculate other stats
     return useEffect(() => {
-      updateStat(
+      handleUpdateCalculatorField(
         calculateCurrentStat(
           false,
           level,
@@ -128,6 +131,9 @@ const Calculator = ({
   };
   return (
     <>
+      <Button onClick={handleResetCalculator} text={"Reset Calculator"} />
+      <br></br>
+      <br></br>
       <NatureSelector />
       <br></br>
       <br></br>

@@ -1,10 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
-import { convertStringToLabel as label } from "../../functions";
 import { updateCalculatorField } from "../../redux/actions";
 import { MAX_VALUE, MIN_VALUE } from "../../constantsNonRedux";
 
 import "./CalculatorField.styles.scss";
+import StatLabel from "../StatLabel/StatLabel.component";
 
 const mapDispatchToProps = (dispatch) => ({
   updateCalculatorField: (payload, fieldType, statName) =>
@@ -81,8 +81,7 @@ const CalculatorField = ({
         defaultValue={defaultValue}
         readOnly={valueIsCalculated}
       ></input>
-      <span>{label(statName)}</span>
-      <br></br>
+      <StatLabel statName={statName} />
     </>
   );
 };
