@@ -36,9 +36,11 @@ export const resetCalculator = () => (dispatch) => {
   const resetCalculatorField = (fieldTypeOrStatName) => ({
     type: `${constant(fieldTypeOrStatName)}_RESET`,
   });
+
   const incrementResetIndex = () => ({
     type: reduxConstants.INCREMENT_RESET_INDEX,
   });
+
   const { nature, pokemon } = SELECTOR_TYPE;
   batch(() => {
     Object.keys(STAT_NAME)

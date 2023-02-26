@@ -1,3 +1,4 @@
+import { FIELD_TYPE } from "../constantsNonRedux";
 import Calculator from "./Calculator.container";
 
 const App = () => {
@@ -16,7 +17,7 @@ const App = () => {
           <div className="calculator-field"></div>
         </div>
       </div> */}
-      <Calculator />
+      <Calculator calculatedFieldType={FIELD_TYPE.currentStat} />
     </>
   );
 };

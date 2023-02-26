@@ -1,9 +1,10 @@
-export const calculateCurrentStat = (
+const calculateCurrentStat = (
   hp = false,
   level = 1,
   baseStat = 0,
   iv = 0,
   ev = 0,
+  currentStat = (hp = true ? 11 : 4),
   natureModifier = 1
 ) => {
   if (hp) {
@@ -21,11 +22,12 @@ export const calculateCurrentStat = (
   }
 };
 
-export const calculateEv = (
+const calculateEv = (
   hp = false,
   level = 1,
   baseStat = 0,
   iv = 0,
+  ev = 0,
   currentStat = (hp = true ? 11 : 4),
   natureModifier = 1
 ) => {
@@ -39,10 +41,11 @@ export const calculateEv = (
   }
 };
 
-export const calculateIv = (
+const calculateIv = (
   hp = false,
   level = 1,
   baseStat = 0,
+  iv = 0,
   ev = 0,
   currentStat = (hp = true ? 11 : 4),
   natureModifier = 1
@@ -54,6 +57,10 @@ export const calculateIv = (
       ((currentStat / natureModifier - 5) * 100) / level - 2 * baseStat - ev / 4
     );
   }
+};
+
+export const calculateField = (calculateFieldType, ...args) => {
+  return calculateCurrentStat(...args);
 };
 
 export const convertStringToConstantSyntax = (string) => {

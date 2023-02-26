@@ -1,11 +1,8 @@
 import { combineReducers } from "redux";
 import * as constants from "./constants";
-
 // ************************************************************ initial states ************************************************************
-const initialStateResetIndex = {
-  resetIndex: 0,
-};
-const initialStatePokemon = { pokemon: "" };
+const initialStateResetIndex = { resetIndex: 0 };
+const initialStatePokemon = { pokemon: "pokemon" };
 const initialStateLevel = { level: 1 };
 const initialStateNature = { nature: "nature" };
 const initialStateHp = { baseStat: 0, currentStat: 11, iv: 0, ev: 0 };
@@ -202,106 +199,3 @@ export const rootReducer = combineReducers({
   specialDefense,
   speed,
 });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-// const baseStat = (state = initialStateBaseStat, action = {}) => {
-//   switch (action.type) {
-//     case constants.BASE_STAT_HP:
-//       return { ...state, hp: action.payload };
-//     case constants.BASE_STAT_ATTACK:
-//       return { ...state, attack: action.payload };
-//     case constants.BASE_STAT_DEFENSE:
-//       return { ...state, defense: action.payload };
-//     case constants.BASE_STAT_SPECIAL_ATTACK:
-//       return { ...state, specialAttack: action.payload };
-//     case constants.BASE_STAT_SPECIAL_DEFENSE:
-//       return { ...state, specialDefense: action.payload };
-//     case constants.BASE_STAT_SPEED:
-//       return { ...state, speed: action.payload };
-//     case constants.BASE_STAT_SET:
-//       return { ...state, ...action.payload };
-//     case constants.BASE_STAT_RESET:
-//       return { ...state, ...initialStateBaseStat };
-//     default:
-//       return state;
-//   }
-// };
-// const currentStat = (state = initialStateCurrentStat, action = {}) => {
-//   switch (action.type) {
-//     case constants.CURRENT_STAT_HP:
-//       return { ...state, hp: action.payload };
-//     case constants.CURRENT_STAT_ATTACK:
-//       return { ...state, attack: action.payload };
-//     case constants.CURRENT_STAT_DEFENSE:
-//       return { ...state, defense: action.payload };
-//     case constants.CURRENT_STAT_SPECIAL_ATTACK:
-//       return { ...state, specialAttack: action.payload };
-//     case constants.CURRENT_STAT_SPECIAL_DEFENSE:
-//       return { ...state, specialDefense: action.payload };
-//     case constants.CURRENT_STAT_SPEED:
-//       return { ...state, speed: action.payload };
-//     case constants.CURRENT_STAT_SET:
-//       return { ...state, ...action.payload };
-//     case constants.CURRENT_STAT_RESET:
-//       return { ...state, ...initialStateCurrentStat };
-//     default:
-//       return state;
-//   }
-// };
-// const iv = (state = initialStateIv, action = {}) => {
-//   switch (action.type) {
-//     case constants.IV_HP:
-//       return { ...state, hp: action.payload };
-//     case constants.IV_ATTACK:
-//       return { ...state, attack: action.payload };
-//     case constants.IV_DEFENSE:
-//       return { ...state, defense: action.payload };
-//     case constants.IV_SPECIAL_ATTACK:
-//       return { ...state, specialAttack: action.payload };
-//     case constants.IV_SPECIAL_DEFENSE:
-//       return { ...state, specialDefense: action.payload };
-//     case constants.IV_SPEED:
-//       return { ...state, speed: action.payload };
-//     case constants.IV_SET:
-//       return { ...state, ...action.payload };
-//     case constants.IV_RESET:
-//       return { ...state, ...initialStateIv };
-//     default:
-//       return state;
-//   }
-// };
-// const ev = (state = initialStateEv, action = {}) => {
-//   switch (action.type) {
-//     case constants.EV_HP:
-//       return { ...state, hp: action.payload };
-//     case constants.EV_ATTACK:
-//       return { ...state, attack: action.payload };
-//     case constants.EV_DEFENSE:
-//       return { ...state, defense: action.payload };
-//     case constants.EV_SPECIAL_ATTACK:
-//       return { ...state, specialAttack: action.payload };
-//     case constants.EV_SPECIAL_DEFENSE:
-//       return { ...state, specialDefense: action.payload };
-//     case constants.EV_SPEED:
-//       return { ...state, speed: action.payload };
-//     case constants.EV_SET:
-//       return { ...state, ...action.payload };
-//     case constants.EV_RESET:
-//       return { ...state, ...initialStateEv };
-//     default:
-//       return state;
-//   }
-// };

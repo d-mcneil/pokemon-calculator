@@ -2,10 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { useEffect } from "react";
 import { updateCalculatorField, resetCalculator } from "../redux/actions";
-import {
-  calculateCurrentStat,
-  convertStringToLabel as label,
-} from "../functions";
+import { convertStringToLabel as label, calculateField } from "../functions";
 import { FIELD_TYPE, STAT_NAME, SELECTOR_TYPE } from "../constantsNonRedux";
 import CalculatorField from "../components/CalculatorField/CalculatorField.component";
 import NatureSelector from "../components/NatureSelector/NatureSelector.component";
@@ -37,57 +34,98 @@ const Calculator = ({
   specialDefense,
   speed,
   resetIndex,
-  calculatedFieldType = "currentStat", // ***************** will move this to the browser router component in the future, currentState is for development purposes
+  calculatedFieldType,
   handleUpdateCalculatorField,
   handleResetCalculator,
 }) => {
-  //
+  const fieldTypeArray = Object.keys(FIELD_TYPE).slice(1); // slice is used to remove 'level' from the array
+  // this for loop makes it so that the fieldType that is to be calculated shows up as the final one
+  // it also removes the fieldType being calculated from the dependency array in the hooks directly below
+  for (let i = 0; i < fieldTypeArray.length - 1; i++) {
+    if (fieldTypeArray[i] === calculatedFieldType) {
+      fieldTypeArray.push(fieldTypeArray.splice(i, 1)[0]);
+      break;
+    }
+  }
 
+  const dependencyArrayHp = [
+    level,
+    hp[`${fieldTypeArray[0]}`],
+    hp[`${fieldTypeArray[1]}`],
+    hp[`${fieldTypeArray[2]}`],
+  ];
+  // recalculate hp... hp is not affected by nature, so forumla is different
   useEffect(() => {
-    // recalculate hp
     handleUpdateCalculatorField(
-      calculateCurrentStat(true, level, hp.baseStat, hp.iv, hp.ev),
-      FIELD_TYPE.currentStat,
+      calculateField(
+        calculatedFieldType,
+        true,
+        level,
+        hp.baseStat,
+        hp.iv,
+        hp.ev,
+        hp.currentStat
+      ),
+      calculatedFieldType,
       STAT_NAME.hp
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [level, hp.ev, hp.iv, hp.baseStat]);
+  }, [...dependencyArrayHp]);
 
-  const useCalculateCurrentStat = (stat, level, fieldType, statName) => {
-    // custom hook
-    //recalculate other stats
+  // custom hook
+  const useCalculateField = (stat, level, fieldType, statName) => {
+    const dependencyArray = [
+      level,
+      stat[`${fieldTypeArray[0]}`],
+      stat[`${fieldTypeArray[1]}`],
+      stat[`${fieldTypeArray[2]}`],
+      stat.natureModifier,
+    ];
     return useEffect(() => {
       handleUpdateCalculatorField(
-        calculateCurrentStat(
+        calculateField(
+          calculatedFieldType,
           false,
           level,
           stat.baseStat,
           stat.iv,
           stat.ev,
+          stat.currentStat,
           stat.natureModifier
         ),
         fieldType,
         statName
       );
       // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [level, stat.ev, stat.iv, stat.baseStat, stat.natureModifier]);
+    }, [...dependencyArray]);
   };
 
-  //prettier-ignore
-  useCalculateCurrentStat(attack, level, FIELD_TYPE.currentStat, STAT_NAME.attack);
-  //prettier-ignore
-  useCalculateCurrentStat(defense, level, FIELD_TYPE.currentStat, STAT_NAME.defense);
-  //prettier-ignore
-  useCalculateCurrentStat(specialAttack, level, FIELD_TYPE.currentStat, STAT_NAME.specialAttack);
-  //prettier-ignore
-  useCalculateCurrentStat(specialDefense, level, FIELD_TYPE.currentStat, STAT_NAME.specialDefense);
-  //prettier-ignore
-  useCalculateCurrentStat(speed, level, FIELD_TYPE.currentStat, STAT_NAME.speed);
+  // recalculate other stats
+  useCalculateField(attack, level, calculatedFieldType, STAT_NAME.attack);
+  useCalculateField(defense, level, calculatedFieldType, STAT_NAME.defense);
+  useCalculateField(
+    specialAttack,
+    level,
+    calculatedFieldType,
+    STAT_NAME.specialAttack
+  );
+  useCalculateField(
+    specialDefense,
+    level,
+    calculatedFieldType,
+    STAT_NAME.specialDefense
+  );
+  useCalculateField(speed, level, calculatedFieldType, STAT_NAME.speed);
 
   const renderCalculatorFields = () => {
-    // prettier-ignore
-    const statArray = [ hp, attack, defense, specialAttack, specialDefense, speed];
-    const fieldTypeArray = Object.keys(FIELD_TYPE);
+    const statArray = [
+      hp,
+      attack,
+      defense,
+      specialAttack,
+      specialDefense,
+      speed,
+    ];
     const statNameArray = Object.keys(STAT_NAME);
 
     return (
@@ -97,9 +135,8 @@ const Calculator = ({
           defaultValue={level}
           fieldType={FIELD_TYPE.level}
         />
-        {fieldTypeArray.slice(1).map((fieldType) => {
+        {fieldTypeArray.map((fieldType) => {
           // adding a CalculatorField for every fieldType for every statName --- requires nested map functions
-          // slicing because hp is not affected by nature and it is the first item in the array
           const valueIsCalculated =
             fieldType === calculatedFieldType ? true : false; // if the value is calculated, then it has a more complex key and the input field is read-only
 
@@ -112,7 +149,9 @@ const Calculator = ({
                 const index = statNameArray.indexOf(statName);
                 const defaultValue = statArray[index][fieldType]; // the (numerical) value of stat.fieldType --- examples: hp.currentStat, defense.iv, specialAttack.ev
                 const key = `${resetIndex}-${fieldType}-${statName}${
-                  valueIsCalculated ? `-${defaultValue}` : "" // the default value tag is added to the key if it is calculated so that it will rerender every time its value is changed
+                  valueIsCalculated ? `-${defaultValue}` : ""
+                  // the defaultValue tag is added to the key if it is calculated so that it will rerender every time its value is changed
+                  // the resetIndex tag is added to the key so that it rerenders if the calculator is reset
                 }`;
 
                 return (
