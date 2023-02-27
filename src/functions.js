@@ -105,3 +105,10 @@ export const convertStringToLabel = (string) => {
   }
   return newString;
 };
+
+export const setExtremeValue = (valuesObject, fieldType, statName) => {
+  return Number.isInteger(valuesObject[fieldType])
+    ? valuesObject[fieldType]
+    : valuesObject[fieldType][statName];
+  // the MAX_VALUE and MIN_VALUE objects go one level deeper for currentStat and baseStat than they do for level, iv, and ev
+};
