@@ -1,10 +1,12 @@
+import { FIELD_TYPE } from "./constantsNonRedux";
+
 const calculateCurrentStat = (
   hp = false,
   level = 1,
   baseStat = 0,
   iv = 0,
   ev = 0,
-  currentStat = (hp = true ? 11 : 4),
+  currentStat = (hp = true ? 11 : 4), // not used, but included because calculateField calls one of 3 functions, and they all need to have the same argument structure
   natureModifier = 1
 ) => {
   if (hp) {
@@ -27,17 +29,20 @@ const calculateEv = (
   level = 1,
   baseStat = 0,
   iv = 0,
-  ev = 0,
+  ev = 0, // not used, but included because calculateField calls one of 3 functions, and they all need to have the same argument structure
   currentStat = (hp = true ? 11 : 4),
   natureModifier = 1
 ) => {
   if (hp) {
-    return (((currentStat - level - 10) * 100) / level - iv - 2 * baseStat) * 4;
+    // prettier-ignore
+    return (Math.ceil(((currentStat - level - 10) * 100) / level) - iv - 2 * baseStat) * 4; // formula is correct for MINIMUM for current inputs
+    // return (Math.ceil(((currentStat + 1 - level - 10) * 100) / level) - iv - 2 * baseStat) * 4 - 1; // formula is correct for MAXIMUM for current inputs
+    //  the first formula is a reversal of the currentStat formula
+    // the second formula is the same, but doing so after incrementing the currentStat by 1, and then subtracting the whole thing by one to achieve the maximum evs for the currentStat
   } else {
-    return (
-      (((currentStat / natureModifier - 5) * 100) / level - iv - 2 * baseStat) *
-      4
-    );
+    // prettier-ignore
+    // return ((Math.ceil(((Math.ceil(currentStat / natureModifier) - 5) * 100) / level) - iv - 2 * baseStat) * 4); // formula is correct for MINIMUM for current inputs
+    return ((Math.ceil(((Math.ceil((currentStat + 1) / natureModifier) - 5) * 100) / level) - iv - 2 * baseStat) * 4) - 1; // formula is correct for MAXIMUM for current inputs
   }
 };
 
@@ -45,7 +50,7 @@ const calculateIv = (
   hp = false,
   level = 1,
   baseStat = 0,
-  iv = 0,
+  iv = 0, // not used, but included because calculateField calls one of 3 functions, and they all need to have the same argument structure
   ev = 0,
   currentStat = (hp = true ? 11 : 4),
   natureModifier = 1
@@ -59,8 +64,14 @@ const calculateIv = (
   }
 };
 
-export const calculateField = (calculateFieldType, ...args) => {
-  return calculateCurrentStat(...args);
+export const calculateField = (calculatedFieldType, ...args) => {
+  if (calculatedFieldType === FIELD_TYPE.ev) {
+    return calculateEv(...args);
+  } else if (calculatedFieldType === FIELD_TYPE.iv) {
+    return calculateIv(...args);
+  } else {
+    return calculateCurrentStat(...args);
+  }
 };
 
 export const convertStringToConstantSyntax = (string) => {
