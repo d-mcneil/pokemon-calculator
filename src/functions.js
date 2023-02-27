@@ -59,8 +59,8 @@ const calculateIv = (
     // the second formula is the same, but doing so after incrementing the currentStat by 1, and then subtracting the whole thing by one to achieve the maximum evs for the currentStat
   } else {
     // prettier-ignore
-    // return Math.ceil(((Math.ceil(currentStat / natureModifier) - 5) * 100) / level - 2 * baseStat - ev / 4); // formula is correct for MINIMUM for current inputs
-    return Math.ceil(((Math.ceil(Math.ceil(currentStat + 1) / natureModifier) - 5) * 100) / level - 2 * baseStat - ev / 4) - 1; // formula is correct for MAXIMUM for current inputs
+    return Math.ceil(((Math.ceil(currentStat / natureModifier) - 5) * 100) / level - 2 * baseStat - ev / 4); // formula is correct for MINIMUM for current inputs
+    // return Math.ceil(((Math.ceil(Math.ceil(currentStat + 1) / natureModifier) - 5) * 100) / level - 2 * baseStat - ev / 4) - 1; // formula is correct for MAXIMUM for current inputs
     // the first formula is a reversal of the currentStat formula
     // the second formula is the same, but doing so after incrementing the currentStat by 1, and then subtracting the whole thing by one to achieve the maximum evs for the currentStat
   }
