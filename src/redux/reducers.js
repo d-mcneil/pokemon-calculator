@@ -5,40 +5,57 @@ const initialStateResetIndex = { resetIndex: 0 };
 const initialStatePokemon = { pokemon: "pokemon" };
 const initialStateLevel = { level: 1 };
 const initialStateNature = { nature: "nature" };
-const initialStateHp = { baseStat: 0, currentStat: 11, iv: 0, ev: 0 };
+const initialStateHp = {
+  baseStat: 0,
+  currentStat: 11,
+  iv: 0,
+  ivMax: 31,
+  ev: 0,
+  evMax: 252,
+};
 const initialStateAttack = {
   baseStat: 0,
   currentStat: 5,
   iv: 0,
+  ivMax: 31,
   ev: 0,
+  evMax: 252,
   natureModifier: 1,
 };
 const initialStateDefense = {
   baseStat: 0,
   currentStat: 5,
   iv: 0,
+  ivMax: 31,
   ev: 0,
+  evMax: 252,
   natureModifier: 1,
 };
 const initialStateSpecialAttack = {
   baseStat: 0,
   currentStat: 5,
   iv: 0,
+  ivMax: 31,
   ev: 0,
+  evMax: 252,
   natureModifier: 1,
 };
 const initialStateSpecialDefense = {
   baseStat: 0,
   currentStat: 5,
   iv: 0,
+  ivMax: 31,
   ev: 0,
+  evMax: 252,
   natureModifier: 1,
 };
 const initialStateSpeed = {
   baseStat: 0,
   currentStat: 5,
   iv: 0,
+  ivMax: 31,
   ev: 0,
+  evMax: 252,
   natureModifier: 1,
 };
 // ************************************************************ reducers ************************************************************
@@ -90,6 +107,10 @@ const hp = (state = initialStateHp, action = {}) => {
       return { ...state, iv: action.payload };
     case constants.HP_EV_SET:
       return { ...state, ev: action.payload };
+    case constants.HP_IV_MAX_SET:
+      return { ...state, ivMax: action.payload };
+    case constants.HP_EV_MAX_SET:
+      return { ...state, evMax: action.payload };
     case constants.HP_RESET:
       return { ...state, ...initialStateHp };
     default:
@@ -106,6 +127,10 @@ const attack = (state = initialStateAttack, action = {}) => {
       return { ...state, iv: action.payload };
     case constants.ATTACK_EV_SET:
       return { ...state, ev: action.payload };
+    case constants.ATTACK_IV_MAX_SET:
+      return { ...state, ivMax: action.payload };
+    case constants.ATTACK_EV_MAX_SET:
+      return { ...state, evMax: action.payload };
     case constants.ATTACK_NATURE_MODIFIER_SET:
       return { ...state, natureModifier: action.payload };
     case constants.ATTACK_RESET:
@@ -124,6 +149,10 @@ const defense = (state = initialStateDefense, action = {}) => {
       return { ...state, iv: action.payload };
     case constants.DEFENSE_EV_SET:
       return { ...state, ev: action.payload };
+    case constants.DEFENSE_IV_MAX_SET:
+      return { ...state, ivMax: action.payload };
+    case constants.DEFENSE_EV_MAX_SET:
+      return { ...state, evMax: action.payload };
     case constants.DEFENSE_NATURE_MODIFIER_SET:
       return { ...state, natureModifier: action.payload };
     case constants.DEFENSE_RESET:
@@ -142,6 +171,10 @@ const specialAttack = (state = initialStateSpecialAttack, action = {}) => {
       return { ...state, iv: action.payload };
     case constants.SPECIAL_ATTACK_EV_SET:
       return { ...state, ev: action.payload };
+    case constants.SPECIAL_ATTACK_IV_MAX_SET:
+      return { ...state, ivMax: action.payload };
+    case constants.SPECIAL_ATTACK_EV_MAX_SET:
+      return { ...state, evMax: action.payload };
     case constants.SPECIAL_ATTACK_NATURE_MODIFIER_SET:
       return { ...state, natureModifier: action.payload };
     case constants.SPECIAL_ATTACK_RESET:
@@ -160,6 +193,10 @@ const specialDefense = (state = initialStateSpecialDefense, action = {}) => {
       return { ...state, iv: action.payload };
     case constants.SPECIAL_DEFENSE_EV_SET:
       return { ...state, ev: action.payload };
+    case constants.SPECIAL_DEFENSE_IV_MAX_SET:
+      return { ...state, ivMax: action.payload };
+    case constants.SPECIAL_DEFENSE_EV_MAX_SET:
+      return { ...state, evMax: action.payload };
     case constants.SPECIAL_DEFENSE_NATURE_MODIFIER_SET:
       return { ...state, natureModifier: action.payload };
     case constants.SPECIAL_DEFENSE_RESET:
@@ -178,6 +215,10 @@ const speed = (state = initialStateSpeed, action = {}) => {
       return { ...state, iv: action.payload };
     case constants.SPEED_EV_SET:
       return { ...state, ev: action.payload };
+    case constants.SPEED_IV_MAX_SET:
+      return { ...state, ivMax: action.payload };
+    case constants.SPEED_EV_MAX_SET:
+      return { ...state, evMax: action.payload };
     case constants.SPEED_NATURE_MODIFIER_SET:
       return { ...state, natureModifier: action.payload };
     case constants.SPEED_RESET:

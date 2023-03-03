@@ -7,7 +7,7 @@ import "./Navigation.styles.scss";
 const Navigation = () => {
   return (
     <div>
-      <Link to={"/current-stat"}>
+      <Link to={"/"}>
         <Button text={"Calculate Stats"} />
       </Link>
       <Link to={"/iv"}>

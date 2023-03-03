@@ -26,7 +26,7 @@ const App = () => {
             element={
               <Calculator calculatedFieldType={FIELD_TYPE.currentStat} />
             }
-            path={"current-stat"}
+            index
           />
           <Route
             element={<Calculator calculatedFieldType={FIELD_TYPE.ev} />}

@@ -11,10 +11,16 @@ const calculateCurrentStat = (
 ) => {
   if (hp) {
     // prettier-ignore
-    return (Math.floor(((2 * baseStat + iv + Math.floor(ev / 4)) * level) / 100) + level + 10);
+    return {
+      value:
+      (Math.floor(((2 * baseStat + iv + Math.floor(ev / 4)) * level) / 100) + level + 10)
+    };
   } else {
     // prettier-ignore
-    return Math.floor((Math.floor(((2 * baseStat + iv + Math.floor(ev / 4)) * level) / 100) + 5) * natureModifier);
+    return {
+      value:
+        Math.floor((Math.floor(((2 * baseStat + iv + Math.floor(ev / 4)) * level) / 100) + 5) * natureModifier)
+    };
   }
 };
 
@@ -29,14 +35,22 @@ const calculateEv = (
 ) => {
   if (hp) {
     // prettier-ignore
+    return {
+      value: (Math.ceil(((currentStat - level - 10) * 100) / level) - iv - 2 * baseStat) * 4,
+      maxValue: (Math.ceil(((currentStat + 1 - level - 10) * 100) / level) - iv - 2 * baseStat) * 4 - 1
+    }
     // return (Math.ceil(((currentStat - level - 10) * 100) / level) - iv - 2 * baseStat) * 4; // formula is correct for MINIMUM for current inputs
-    return (Math.ceil(((currentStat + 1 - level - 10) * 100) / level) - iv - 2 * baseStat) * 4 - 1; // formula is correct for MAXIMUM for current inputs
+    // return (Math.ceil(((currentStat + 1 - level - 10) * 100) / level) - iv - 2 * baseStat) * 4 - 1; // formula is correct for MAXIMUM for current inputs
     // the first formula is a reversal of the currentStat formula
     // the second formula is the same, but doing so after incrementing the currentStat by 1, and then subtracting the whole thing by one to achieve the maximum evs for the currentStat
   } else {
     // prettier-ignore
+    return {
+      value: (Math.ceil(((Math.ceil(currentStat / natureModifier) - 5) * 100) / level) - iv - 2 * baseStat) * 4,
+      maxValue: ((Math.ceil(((Math.ceil((currentStat + 1) / natureModifier) - 5) * 100) / level) - iv - 2 * baseStat) * 4) - 1
+    }
     // return ((Math.ceil(((Math.ceil(currentStat / natureModifier) - 5) * 100) / level) - iv - 2 * baseStat) * 4); // formula is correct for MINIMUM for current inputs
-    return ((Math.ceil(((Math.ceil((currentStat + 1) / natureModifier) - 5) * 100) / level) - iv - 2 * baseStat) * 4) - 1; // formula is correct for MAXIMUM for current inputs
+    // return ((Math.ceil(((Math.ceil((currentStat + 1) / natureModifier) - 5) * 100) / level) - iv - 2 * baseStat) * 4) - 1; // formula is correct for MAXIMUM for current inputs
     // the first formula is a reversal of the currentStat formula
     // the second formula is the same, but doing so after incrementing the currentStat by 1, and then subtracting the whole thing by one to achieve the maximum evs for the currentStat
   }
@@ -53,13 +67,21 @@ const calculateIv = (
 ) => {
   if (hp) {
     // prettier-ignore
-    return Math.ceil(Math.ceil(((currentStat - level - 10) * 100) / level) - 2 * baseStat - ev / 4); // formula is correct for MINIMUM for current inputs
+    return {
+      value: Math.ceil(Math.ceil(((currentStat - level - 10) * 100) / level) - 2 * baseStat - ev / 4),
+      maxValue: Math.ceil(Math.ceil(((currentStat + 1 - level - 10) * 100) / level) - 2 * baseStat - ev / 4) - 1
+    }
+    // return Math.ceil(Math.ceil(((currentStat - level - 10) * 100) / level) - 2 * baseStat - ev / 4); // formula is correct for MINIMUM for current inputs
     // return Math.ceil(Math.ceil(((currentStat + 1 - level - 10) * 100) / level) - 2 * baseStat - ev / 4) - 1; // formula is correct for MAXIMUM for current inputs
     // the first formula is a reversal of the currentStat formula
     // the second formula is the same, but doing so after incrementing the currentStat by 1, and then subtracting the whole thing by one to achieve the maximum evs for the currentStat
   } else {
     // prettier-ignore
-    return Math.ceil(((Math.ceil(currentStat / natureModifier) - 5) * 100) / level - 2 * baseStat - ev / 4); // formula is correct for MINIMUM for current inputs
+    return {
+      value: Math.ceil(((Math.ceil(currentStat / natureModifier) - 5) * 100) / level - 2 * baseStat - ev / 4),
+      maxValue: Math.ceil(((Math.ceil(Math.ceil(currentStat + 1) / natureModifier) - 5) * 100) / level - 2 * baseStat - ev / 4) - 1,
+    }
+    // return Math.ceil(((Math.ceil(currentStat / natureModifier) - 5) * 100) / level - 2 * baseStat - ev / 4); // formula is correct for MINIMUM for current inputs
     // return Math.ceil(((Math.ceil(Math.ceil(currentStat + 1) / natureModifier) - 5) * 100) / level - 2 * baseStat - ev / 4) - 1; // formula is correct for MAXIMUM for current inputs
     // the first formula is a reversal of the currentStat formula
     // the second formula is the same, but doing so after incrementing the currentStat by 1, and then subtracting the whole thing by one to achieve the maximum evs for the currentStat
