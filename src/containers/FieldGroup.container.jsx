@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { connect } from "react-redux";
 import CalculatorField from "../components/CalculatorField/CalculatorField.component";
 import StatLabel from "../components/StatLabel/StatLabel.component";
@@ -66,7 +66,6 @@ const FieldGroup = ({
     const aboveRange = defaultValue > maxValue;
     const belowRange = defaultValue < minValue;
     const key = `${resetIndex}-${fieldType}-${statName}${
-      // valueIsCalculated ? `-${defaultValue}` : ""
       valueIsCalculated
         ? `-${defaultValue}`
         : aboveRange || belowRange
@@ -82,7 +81,7 @@ const FieldGroup = ({
     }`;
 
     return (
-      <>
+      <Fragment key={`${fieldType}-${statName}-fragment`}>
         <CalculatorField
           key={key}
           defaultValue={defaultValue}
@@ -92,11 +91,9 @@ const FieldGroup = ({
         />
         {renderMaxIvOrEvFields(statName, maxValue, index)}
         <StatLabel statName={statName} key={`${fieldType}-${statName}-label`} />
-      </>
+      </Fragment>
     );
   });
 };
 
 export default connect(mapStateToProps)(FieldGroup);
-
-// resetIndex, level, fieldTypeArray, statNameArray

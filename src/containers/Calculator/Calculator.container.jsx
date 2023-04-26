@@ -1,20 +1,21 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { connect } from "react-redux";
 import { useEffect } from "react";
-import { updateCalculatorField, resetCalculator } from "../redux/actions";
-import { calculateField, setExtremeValue } from "../functions";
+import { updateCalculatorField, resetCalculator } from "../../redux/actions";
+import { calculateField, setExtremeValue } from "../../functions";
 import {
   FIELD_TYPE,
   STAT_NAME,
   SELECTOR_TYPE,
   MAX_VALUE,
   MIN_VALUE,
-} from "../constantsNonRedux";
-import CalculatorField from "../components/CalculatorField/CalculatorField.component";
-import NatureSelector from "../components/NatureSelector/NatureSelector.component";
-import Button from "../components/Button/Button.component";
-import FieldTypeLabel from "../components/FieldTypeLabel/FieldTypeLabel.component";
-import FieldGroup from "./FieldGroup.container";
+} from "../../constantsNonRedux";
+import CalculatorField from "../../components/CalculatorField/CalculatorField.component";
+import NatureSelector from "../../components/NatureSelector/NatureSelector.component";
+import Button from "../../components/Button/Button.component";
+import FieldTypeLabel from "../../components/FieldTypeLabel/FieldTypeLabel.component";
+import FieldGroup from "../FieldGroup.container";
+import "./Calculator.styles.scss";
 
 const mapStateToProps = (state) => ({
   level: state.level.level,
@@ -46,6 +47,20 @@ const Calculator = ({
   handleUpdateCalculatorField,
   handleResetCalculator,
 }) => {
+  // have the navigation bar change which tab is highlighted according to which link is selected
+  useEffect(() => {
+    Array.from(document.getElementsByClassName("sidebar-item")).forEach(
+      (element) => {
+        if (element.className.includes("active")) {
+          element.classList.remove("active");
+        }
+      }
+    );
+    document
+      .getElementById(`${calculatedFieldType}-sidebar`)
+      .classList.add("active");
+  }, [calculatedFieldType]);
+
   const statArray = [hp, attack, defense, specialAttack, specialDefense, speed];
   const statNameArray = Object.keys(STAT_NAME);
   const fieldTypeArray = Object.keys(FIELD_TYPE).slice(1); // slice is used to remove 'level' from the array
@@ -103,13 +118,11 @@ const Calculator = ({
       hp.ev,
       hp.currentStat
     );
-
     handleUpdateCalculatorField(
       result.value,
       calculatedFieldType,
       STAT_NAME.hp
     );
-
     if (result.maxValue) {
       handleUpdateCalculatorField(
         result.maxValue,
@@ -148,7 +161,6 @@ const Calculator = ({
           statName
         );
       }
-
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [...dependencyArray]);
   };
@@ -174,68 +186,20 @@ const Calculator = ({
       const valueIsCalculated =
         fieldType === calculatedFieldType ? true : false; // if the value is calculated, then it has a more complex key and the input field is read-only
       return (
-        <>
+        <Fragment key={`${fieldType}-fragment`}>
           <FieldTypeLabel fieldType={fieldType} key={`${fieldType}-label`} />
           <FieldGroup
             fieldType={fieldType}
             valueIsCalculated={valueIsCalculated}
             key={`${fieldType}-group`}
           />
-        </>
+        </Fragment>
       );
     });
   };
-  // fieldTypeArray.map((fieldType) => {
-  //         // adding a CalculatorField for every fieldType for every statName --- requires nested map functions
-  //         const valueIsCalculated =
-  //           fieldType === calculatedFieldType ? true : false; // if the value is calculated, then it has a more complex key and the input field is read-only
-  //         return (
-  //           <>
-  //             <FieldTypeLabel fieldType={fieldType} key={fieldType} />
-  //             {statNameArray.map((statName) => {
-  //               const index = statNameArray.indexOf(statName);
-  //               const defaultValue = statArray[index][fieldType]; // the (numerical) value of stat.fieldType --- examples: hp.currentStat, defense.iv, specialAttack.ev
-  //               const key = `${resetIndex}-${fieldType}-${statName}${
-  //                 // valueIsCalculated ? `-${defaultValue}` : ""
-  //                 valueIsCalculated
-  //                   ? `-${defaultValue}`
-  //                   : defaultValue >
-  //                       setExtremeValue(MAX_VALUE, fieldType, statName) ||
-  //                     defaultValue <
-  //                       setExtremeValue(MIN_VALUE, fieldType, statName)
-  //                   ? "-will-be-reset"
-  //                   : ""
-  //                 // the defaultValue tag is added to the key if it is calculated so that it will rerender every time its value is changed
-
-  //                 // the resetIndex tag is added to the key so that it rerenders if the calculator is reset
-
-  //                 // the continuation of the ternary after default value is to generate a key that tags a value to be reset
-  //                 // this situation would occur if, when calculating a value, that value is out of range, and then the user switches calculators without fixing the out of range value
-  //                 // one of the useEffect hooks will catch this and reset the value when the calculator component remounts
-  //               }`;
-
-  //               return (
-  //                 <>
-  //                   <CalculatorField
-  //                     key={key}
-  //                     defaultValue={defaultValue}
-  //                     fieldType={fieldType}
-  //                     statName={statName}
-  //                     valueIsCalculated={valueIsCalculated}
-  //                   />
-  //                   <StatLabel
-  //                     statName={statName}
-  //                     key={`${fieldType}-${statName}`}
-  //                   />
-  //                 </>
-  //               );
-  //             })}
-  //           </>
-  //         );
-  //       })
 
   return (
-    <>
+    <main className="calculator-container">
       <Button
         onClick={handleResetCalculator}
         text={"Reset Calculator"}
@@ -252,7 +216,7 @@ const Calculator = ({
         fieldType={FIELD_TYPE.level}
       />
       {renderCalculatorFields()}
-    </>
+    </main>
   );
 };
 

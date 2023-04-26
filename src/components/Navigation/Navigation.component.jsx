@@ -1,22 +1,32 @@
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
-import Button from "../Button/Button.component";
 
 import "./Navigation.styles.scss";
+import { FIELD_TYPE } from "../../constantsNonRedux";
 
 const Navigation = () => {
   return (
-    <div>
-      <Link to={"/"}>
-        <Button text={"Calculate Stats"} />
-      </Link>
-      <Link to={"/iv"}>
-        <Button text={"Calculate IVs"} />
-      </Link>
-      <Link to={"/ev"}>
-        <Button text={"Calculate EVs"} />
-      </Link>
-      <Outlet />
+    <div className="main-container">
+      <nav className="sidebar-container">
+        <ul className="sidebar">
+          <li className="sidebar-item sidebar-spacer"></li>
+
+          <li className="sidebar-item" id={`${FIELD_TYPE.currentStat}-sidebar`}>
+            <Link to={"/"}>Calculate Stats</Link>
+          </li>
+
+          <li className="sidebar-item" id={`${FIELD_TYPE.iv}-sidebar`}>
+            <Link to={"/iv"}>Calculate IVs </Link>
+          </li>
+
+          <li className="sidebar-item" id={`${FIELD_TYPE.ev}-sidebar`}>
+            <Link to={"/ev"}> Calculate EVs</Link>{" "}
+          </li>
+
+          <li className="sidebar-item sidebar-spacer"></li>
+        </ul>
+      </nav>
+      <Outlet /> {/* Calculator container */}
     </div>
   );
 };
