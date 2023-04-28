@@ -3,14 +3,7 @@ import { convertStringToLabel as label } from "../../functions";
 import "./FieldTypeLabel.styles.scss";
 
 const FieldTypeLabel = ({ fieldType }) => {
-  return (
-    <>
-      <br></br>
-      <br></br>
-      <span>{label(fieldType)}</span>
-      <br></br>
-    </>
-  );
+  return <h3>{label(fieldType)}</h3>;
 };
 
 export default FieldTypeLabel;

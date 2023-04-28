@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import CalculatorField from "../components/CalculatorField/CalculatorField.component";
 import StatLabel from "../components/StatLabel/StatLabel.component";
@@ -45,11 +45,14 @@ const FieldGroup = ({
 
       return (
         <>
-          -
+          <p className="min-max-calculator-field-separator">-</p>
           <CalculatorField
             valueIsCalculated={valueIsCalculated}
             key={key}
             defaultValue={defaultValue}
+            fieldType={fieldType}
+            statName={statName}
+            max
           />
         </>
       );
@@ -79,19 +82,28 @@ const FieldGroup = ({
       // this situation would occur if, when calculating a value, that value is out of range, and then the user switches calculators without fixing the out of range value
       // one of the useEffect hooks will catch this and reset the value when the calculator component remounts
     }`;
+    const fieldId = `calculator-field-${fieldType}-${statName}`;
 
     return (
-      <Fragment key={`${fieldType}-${statName}-fragment`}>
+      <div
+        className="calculator-field-wrapper"
+        key={`calculator-field-label-wrapper-${fieldType}-${statName}`}
+      >
         <CalculatorField
           key={key}
           defaultValue={defaultValue}
           fieldType={fieldType}
           statName={statName}
           valueIsCalculated={valueIsCalculated}
+          id={fieldId}
         />
         {renderMaxIvOrEvFields(statName, maxValue, index)}
-        <StatLabel statName={statName} key={`${fieldType}-${statName}-label`} />
-      </Fragment>
+        <StatLabel
+          statName={statName}
+          key={`${fieldType}-${statName}-label`}
+          labelIsFor={fieldId}
+        />
+      </div>
     );
   });
 };

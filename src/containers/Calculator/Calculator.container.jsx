@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { useEffect } from "react";
 import { updateCalculatorField, resetCalculator } from "../../redux/actions";
@@ -16,6 +16,7 @@ import Button from "../../components/Button/Button.component";
 import FieldTypeLabel from "../../components/FieldTypeLabel/FieldTypeLabel.component";
 import FieldGroup from "../FieldGroup.container";
 import "./Calculator.styles.scss";
+import StatLabel from "../../components/StatLabel/StatLabel.component";
 
 const mapStateToProps = (state) => ({
   level: state.level.level,
@@ -186,14 +187,14 @@ const Calculator = ({
       const valueIsCalculated =
         fieldType === calculatedFieldType ? true : false; // if the value is calculated, then it has a more complex key and the input field is read-only
       return (
-        <Fragment key={`${fieldType}-fragment`}>
+        <div className="field-group" key={`field-group-wrapper-${fieldType}`}>
           <FieldTypeLabel fieldType={fieldType} key={`${fieldType}-label`} />
           <FieldGroup
             fieldType={fieldType}
             valueIsCalculated={valueIsCalculated}
             key={`${fieldType}-group`}
           />
-        </Fragment>
+        </div>
       );
     });
   };
@@ -206,15 +207,24 @@ const Calculator = ({
         key={"reset-calculator"}
       />
       <NatureSelector key={`${resetIndex}-${SELECTOR_TYPE.nature}`} />
-      <FieldTypeLabel
+      {/* <FieldTypeLabel
         fieldType={FIELD_TYPE.level}
         key={`${FIELD_TYPE.level}-label`}
-      />
-      <CalculatorField
-        key={`${resetIndex}-${FIELD_TYPE.level}`}
-        defaultValue={level}
-        fieldType={FIELD_TYPE.level}
-      />
+      /> */}
+      <div className="calculator-field-wrapper">
+        <CalculatorField
+          key={`${resetIndex}-${FIELD_TYPE.level}`}
+          defaultValue={level}
+          fieldType={FIELD_TYPE.level}
+          id="calculator-field-level"
+        />
+        <StatLabel
+          statName={FIELD_TYPE.level}
+          key={`${FIELD_TYPE.level}-label`}
+          labelIsFor="calculator-field-level"
+        />
+      </div>
+
       {renderCalculatorFields()}
     </main>
   );

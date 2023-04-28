@@ -16,6 +16,7 @@ const CalculatorField = ({
   valueIsCalculated = false,
   fieldType, // baseStat, currentStat, iv, ev, level
   statName = "", // hp, attack, defense, specialAttack, specialDefense, speed
+  id,
 }) => {
   const maxValue = valueIsCalculated
     ? undefined
@@ -63,6 +64,8 @@ const CalculatorField = ({
 
   return (
     <input
+      className="calculator-field"
+      id={id}
       onChange={handleChange}
       onBlur={handleBlur}
       type={"number"}

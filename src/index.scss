@@ -1,3 +1,14 @@
+html {
+  margin: 0;
+  width: 100%;
+  font-size: 12px;
+}
+
+@media (min-width: 600px) {
+  html {
+    font-size: 16px;
+  }
+}
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -11,4 +22,31 @@ body {
 * {
   box-sizing: border-box;
   line-height: 1.5em;
+}
+
+button,
+select,
+h3 {
+  display: block;
+}
+
+input,
+label,
+p {
+  display: inline-block;
+}
+
+h3,
+p {
+  margin: 0;
+}
+
+a,
+button,
+select,
+input,
+label,
+h3,
+p {
+  font-size: 1rem;
 }

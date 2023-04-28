@@ -29,9 +29,7 @@
       height: 100%;
       display: flex;
       flex-direction: column;
-      // align-content: center;
-      // justify-content: center;
-      width: 12em;
+      width: fit-content;
 
       .sidebar-item {
         // an <li> element
