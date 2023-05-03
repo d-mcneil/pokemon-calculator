@@ -208,10 +208,6 @@ const Calculator = ({
           key={"reset-calculator"}
         />
         <NatureSelector key={`${resetIndex}-${SELECTOR_TYPE.nature}`} />
-        {/* <FieldTypeLabel
-        fieldType={FIELD_TYPE.level}
-        key={`${FIELD_TYPE.level}-label`}
-      /> */}
         <div className="calculator-field-wrapper">
           <CalculatorField
             key={`${resetIndex}-${FIELD_TYPE.level}`}

@@ -18,12 +18,8 @@ const CalculatorField = ({
   statName = "", // hp, attack, defense, specialAttack, specialDefense, speed
   id,
 }) => {
-  const maxValue = valueIsCalculated
-    ? undefined
-    : setExtremeValue(MAX_VALUE, fieldType, statName);
-  const minValue = valueIsCalculated
-    ? undefined
-    : setExtremeValue(MIN_VALUE, fieldType, statName);
+  const maxValue = setExtremeValue(MAX_VALUE, fieldType, statName);
+  const minValue = setExtremeValue(MIN_VALUE, fieldType, statName);
 
   const handleChange = valueIsCalculated
     ? undefined

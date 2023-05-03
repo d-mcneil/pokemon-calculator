@@ -34,13 +34,14 @@ const FieldGroup = ({
   const statArray = [hp, attack, defense, specialAttack, specialDefense, speed];
   const statNameArray = Object.keys(STAT_NAME);
 
-  const renderMaxIvOrEvFields = (statName, maxValue, index) => {
+  const renderMaxIvOrEvFields = (statName, maxValue, minValue, index) => {
     if (
       valueIsCalculated &&
       (fieldType === FIELD_TYPE.ev || fieldType === FIELD_TYPE.iv)
     ) {
       const value = statArray[index][`${fieldType}Max`]; // the numerical value of stat.evMax or stat.ivMax
-      const defaultValue = value > maxValue ? maxValue : value;
+      const defaultValue =
+        value > maxValue ? maxValue : value < minValue ? minValue : value;
       const key = `${resetIndex}-${fieldType}-${statName}-max-${defaultValue}`;
 
       return (
@@ -52,7 +53,6 @@ const FieldGroup = ({
             defaultValue={defaultValue}
             fieldType={fieldType}
             statName={statName}
-            max
           />
         </>
       );
@@ -63,9 +63,17 @@ const FieldGroup = ({
 
   return statNameArray.map((statName) => {
     const index = statNameArray.indexOf(statName);
-    const defaultValue = statArray[index][fieldType]; // the (numerical) value of stat.fieldType --- examples: hp.currentStat, defense.iv, specialAttack.ev
+    const statValue = statArray[index][fieldType]; // the (numerical) value of stat.fieldType --- examples: hp.currentStat, defense.iv, specialAttack.ev
     const maxValue = setExtremeValue(MAX_VALUE, fieldType, statName);
     const minValue = setExtremeValue(MIN_VALUE, fieldType, statName);
+    const defaultValue = //
+      valueIsCalculated // if the value is calculated...
+        ? statValue < minValue // if the calculated value is below the min value...
+          ? minValue // return the min value instead of the calculated value
+          : statValue > maxValue // else if the calculated value is above the max value...
+          ? maxValue // return the max value instead of the the calculated value
+          : statValue // else return the calculated value, because it is valid
+        : statValue; // else the value is NOT calculated, so return the current value of the stat
     const aboveRange = defaultValue > maxValue;
     const belowRange = defaultValue < minValue;
     const key = `${resetIndex}-${fieldType}-${statName}${
@@ -97,7 +105,7 @@ const FieldGroup = ({
           valueIsCalculated={valueIsCalculated}
           id={fieldId}
         />
-        {renderMaxIvOrEvFields(statName, maxValue, index)}
+        {renderMaxIvOrEvFields(statName, maxValue, minValue, index)}
         <StatLabel
           statName={statName}
           key={`${fieldType}-${statName}-label`}
