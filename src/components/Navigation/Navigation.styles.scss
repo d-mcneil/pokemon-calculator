@@ -1,67 +1,123 @@
 .main-container {
   display: flex;
-  width: fit-content;
-  margin-left: auto;
-  margin-right: auto;
-  height: 600px;
-  max-height: 80vh;
-  margin-top: 10vh;
-  border: 1px solid black;
-  // max-width: 80%;
-  // flex-direction: column;
-  // flex-wrap: wrap;
-  // align-content: center;
+  flex-direction: column;
+  width: 100%;
+  margin: 0;
 
   .sidebar-container {
     // a <nav> element
     padding: 0;
     margin: 0;
-    height: 100%;
-    width: fit-content;
     background-color: #fff;
-    // min-height: 400px;
-    // max-height: 600px;
+    width: 100%;
 
     .sidebar {
       // a <ul> element
+      display: flex;
+      justify-content: center;
       padding: 0;
       margin: 0;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      width: fit-content;
+      width: 100%;
 
       .sidebar-item {
         // an <li> element
-        box-shadow: -10px 0px 5px -5px rgba(0, 0, 0, 0.2) inset;
-        list-style: none;
         padding: 0;
         margin: 0;
+        list-style: none;
         background-color: rgba(0, 0, 0, 0.03);
+        width: 33.33333333333%;
+        box-shadow: 0px -10px 5px -5px rgba(0, 0, 0, 0.2) inset;
 
         a {
           // a <Link> component
-          display: block;
-          text-decoration: none;
           margin: 0;
-          padding-top: 15px;
-          padding-bottom: 15px;
-          padding-left: 30px;
-          padding-right: 30px;
           text-align: center;
+          text-decoration: none;
+          padding: 10px;
         }
       }
 
       .sidebar-spacer {
         // an <li> element - empty list item for formatting
-        flex: 1 1 auto;
+        display: none;
       }
 
       .active {
         // an <li> element - active
-        box-shadow: 0 -5px 5px rgba(0, 0, 0, 0.2),
-          0px 5px 5px rgba(0, 0, 0, 0.2);
         background-color: #fff;
+        box-shadow: -5px 0 5px rgba(0, 0, 0, 0.2), 5px 0 5px rgba(0, 0, 0, 0.2);
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+      }
+    }
+  }
+}
+
+@media (min-width: 600px) {
+  .main-container {
+    flex-direction: row;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10vh;
+    max-height: 80vh;
+    height: 600px;
+    border: 1px solid black;
+    // max-width: 80%;
+    // flex-wrap: wrap;
+    // align-content: center;
+
+    .sidebar-container {
+      width: fit-content;
+      height: 100%;
+      // min-height: 400px;
+      // max-height: 600px;
+
+      .sidebar {
+        width: max-content;
+        height: 100%;
+        flex-direction: column;
+
+        .sidebar-item {
+          width: auto;
+          box-shadow: -10px 0px 5px -5px rgba(0, 0, 0, 0.2) inset;
+
+          a {
+            padding-left: 30px;
+            padding-right: 30px;
+            padding-top: 15px;
+            padding-bottom: 15px;
+          }
+        }
+
+        .sidebar-spacer {
+          display: list-item;
+          flex: 1 1 auto;
+        }
+
+        .active {
+          box-shadow: 0 -5px 5px rgba(0, 0, 0, 0.2),
+            0px 5px 5px rgba(0, 0, 0, 0.2);
+          border-top-right-radius: 0;
+          border-bottom-left-radius: 10px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 320px) {
+  // if the screen with is less than 320 px, make the navigation tabs text wrap onto 2 lines instead of staying on 1
+  .main-container {
+    .sidebar-container {
+      .sidebar {
+        .sidebar-item {
+          a {
+            width: min-content;
+            margin-left: auto;
+            margin-right: auto;
+          }
+        }
       }
     }
   }

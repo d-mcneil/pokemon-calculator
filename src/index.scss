@@ -1,10 +1,15 @@
 html {
   margin: 0;
   width: 100%;
-  font-size: 12px;
+  font-size: 11px;
 }
 
-@media (min-width: 600px) {
+@media (min-width: 350px) {
+  html {
+    font-size: 12px;
+  }
+}
+@media (min-width: 600px) and (min-height: 600px) {
   html {
     font-size: 16px;
   }
@@ -24,6 +29,7 @@ body {
   line-height: 1.5em;
 }
 
+a,
 button,
 select,
 h3 {

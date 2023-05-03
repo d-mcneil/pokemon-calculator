@@ -201,30 +201,31 @@ const Calculator = ({
 
   return (
     <main className="calculator-container">
-      <Button
-        onClick={handleResetCalculator}
-        text={"Reset Calculator"}
-        key={"reset-calculator"}
-      />
-      <NatureSelector key={`${resetIndex}-${SELECTOR_TYPE.nature}`} />
-      {/* <FieldTypeLabel
+      <div className="field-group">
+        <Button
+          onClick={handleResetCalculator}
+          text={"Reset Calculator"}
+          key={"reset-calculator"}
+        />
+        <NatureSelector key={`${resetIndex}-${SELECTOR_TYPE.nature}`} />
+        {/* <FieldTypeLabel
         fieldType={FIELD_TYPE.level}
         key={`${FIELD_TYPE.level}-label`}
       /> */}
-      <div className="calculator-field-wrapper">
-        <CalculatorField
-          key={`${resetIndex}-${FIELD_TYPE.level}`}
-          defaultValue={level}
-          fieldType={FIELD_TYPE.level}
-          id="calculator-field-level"
-        />
-        <StatLabel
-          statName={FIELD_TYPE.level}
-          key={`${FIELD_TYPE.level}-label`}
-          labelIsFor="calculator-field-level"
-        />
+        <div className="calculator-field-wrapper">
+          <CalculatorField
+            key={`${resetIndex}-${FIELD_TYPE.level}`}
+            defaultValue={level}
+            fieldType={FIELD_TYPE.level}
+            id="calculator-field-level"
+          />
+          <StatLabel
+            statName={FIELD_TYPE.level}
+            key={`${FIELD_TYPE.level}-label`}
+            labelIsFor="calculator-field-level"
+          />
+        </div>
       </div>
-
       {renderCalculatorFields()}
     </main>
   );
