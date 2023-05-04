@@ -5,40 +5,22 @@ import Calculator from "./Calculator/Calculator.container";
 
 const App = () => {
   return (
-    <>
-      {/* <div className="calculator-super-container">
-        <div className="calculator-selector-container">
-          <div className="calculator-selection"></div>
-        </div>
-        <div className="calculator-container">
-          <div className="calculator-field"></div>
-          <div className="calculator-field"></div>
-          <div className="calculator-field"></div>
-          <div className="calculator-field"></div>
-          <div className="calculator-field"></div>
-          <div className="calculator-field"></div>
-        </div>
-      </div> */}
-
-      <Routes>
-        <Route path={"/"} element={<Navigation />}>
-          <Route
-            element={
-              <Calculator calculatedFieldType={FIELD_TYPE.currentStat} />
-            }
-            index
-          />
-          <Route
-            element={<Calculator calculatedFieldType={FIELD_TYPE.ev} />}
-            path={"ev"}
-          />
-          <Route
-            element={<Calculator calculatedFieldType={FIELD_TYPE.iv} />}
-            path={"iv"}
-          />
-        </Route>
-      </Routes>
-    </>
+    <Routes>
+      <Route path={"/"} element={<Navigation />}>
+        <Route
+          element={<Calculator calculatedFieldType={FIELD_TYPE.currentStat} />}
+          index
+        />
+        <Route
+          element={<Calculator calculatedFieldType={FIELD_TYPE.ev} />}
+          path={"ev"}
+        />
+        <Route
+          element={<Calculator calculatedFieldType={FIELD_TYPE.iv} />}
+          path={"iv"}
+        />
+      </Route>
+    </Routes>
   );
 };
 
