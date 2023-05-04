@@ -17,29 +17,38 @@ html {
 }
 
 body {
-  margin: 0;
+  // --spacing-2: 10px; // previous spacing between elements
+  // --spacing-3: 20px; // previous spacing between elements
+  // --spacing-2: 0.625rem;
+  // --spacing-3: 1.25rem;
+  --spacing-2: 1rem;
+  --spacing-3: 2rem;
+  // https://www.color-hex.com/color-palette/1045 for colors
+  --text-color: #222224;
+  --page-background-color: #222224cf;
+  --main-background-color: #fff;
+  --sidebar-background-color: #ee1515aa;
+  --border-radius-large: 20px;
+  --border-radius-medium: 10px;
+  --border-width-large: 5px;
+  --border-width-medium: 3px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #eee;
-  // --spacing-2: 10px;
-  // --spacing-3: 20px;
-  // --spacing-2: 0.625rem;
-  // --spacing-3: 1.25rem;
-  --spacing-2: 1rem;
-  --spacing-3: 2rem;
 }
 
 html,
 body,
 #root {
   min-height: 100vh;
+  margin: 0;
 }
 
 #root {
   display: flex;
+  background-color: var(--page-background-color);
 }
 
 * {
@@ -73,4 +82,5 @@ label,
 h3,
 p {
   font-size: 1rem;
+  color: var(--text-color);
 }

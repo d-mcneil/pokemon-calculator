@@ -3,13 +3,14 @@
   flex-direction: column;
   width: 100%;
   margin: 0;
+  background-color: var(--main-background-color);
 
   .sidebar-container {
     // a <nav> element
     padding: 0;
     margin: 0;
-    background-color: #fff;
     width: 100%;
+    background-color: var(--sidebar-background-color);
 
     .sidebar {
       // a <ul> element
@@ -24,9 +25,9 @@
         padding: 0;
         margin: 0;
         list-style: none;
-        background-color: rgba(0, 0, 0, 0.03);
         width: 33.33333333333%;
         box-shadow: 0px -10px 5px -5px rgba(0, 0, 0, 0.2) inset;
+        border-bottom: var(--border-width-medium) solid var(--text-color);
 
         a {
           // a <Link> component
@@ -34,6 +35,7 @@
           text-align: center;
           text-decoration: none;
           padding: 10px;
+          color: var(--main-background-color);
         }
       }
 
@@ -44,10 +46,17 @@
 
       .active {
         // an <li> element - active
-        background-color: #fff;
+        background-color: var(--main-background-color);
         box-shadow: -5px 0 5px rgba(0, 0, 0, 0.2), 5px 0 5px rgba(0, 0, 0, 0.2);
-        border-top-left-radius: 10px;
-        border-top-right-radius: 10px;
+        border-top-left-radius: var(--border-radius-medium);
+        border-top-right-radius: var(--border-radius-medium);
+        border-bottom: none;
+
+        a {
+          border-top-left-radius: var(--border-radius-medium);
+          border-top-right-radius: var(--border-radius-medium);
+          color: var(--text-color);
+        }
       }
     }
   }
@@ -58,18 +67,25 @@
     flex-direction: row;
     width: fit-content;
     margin: auto;
+    border-radius: var(--border-radius-large);
 
     .sidebar-container {
       width: fit-content;
+      border-top-left-radius: var(--border-radius-large);
+      border-bottom-left-radius: var(--border-radius-large);
 
       .sidebar {
         width: max-content;
         height: 100%;
         flex-direction: column;
+        border-top-left-radius: var(--border-radius-large);
+        border-bottom-left-radius: var(--border-radius-large);
 
         .sidebar-item {
           width: auto;
           box-shadow: -10px 0px 5px -5px rgba(0, 0, 0, 0.2) inset;
+          border-right: var(--border-width-large) solid var(--text-color);
+          border-bottom: none;
 
           a {
             padding-left: 30px;
@@ -84,11 +100,25 @@
           flex: 1 1 auto;
         }
 
+        .sidebar-spacer:first-child {
+          border-top-left-radius: var(--border-radius-large);
+        }
+
+        .sidebar-spacer:last-child {
+          border-bottom-left-radius: var(--border-radius-large);
+        }
+
         .active {
           box-shadow: 0 -5px 5px rgba(0, 0, 0, 0.2),
             0px 5px 5px rgba(0, 0, 0, 0.2);
           border-top-right-radius: 0;
-          border-bottom-left-radius: 10px;
+          border-bottom-left-radius: var(--border-radius-medium);
+          border-right: none;
+
+          a {
+            border-top-right-radius: 0;
+            border-bottom-left-radius: var(--border-radius-medium);
+          }
         }
       }
     }

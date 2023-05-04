@@ -1,6 +1,6 @@
 .calculator-container {
   // <main>
-  background-color: #fff;
+  background-color: var(--main-background-color);
   display: grid;
   grid-template-rows: auto auto auto;
   grid-template-columns: auto auto;
@@ -38,6 +38,13 @@
     grid-column: span 2;
     align-self: start;
     justify-self: center;
+  }
+}
+
+@media (min-width: 650px) {
+  .calculator-container {
+    border-top-right-radius: var(--border-radius-large);
+    border-bottom-right-radius: var(--border-radius-large);
   }
 }
 
