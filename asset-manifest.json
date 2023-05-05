@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/pokemon-calculator/static/css/main.4462d3af.css",
+    "main.css": "/pokemon-calculator/static/css/main.4d25c959.css",
     "main.js": "/pokemon-calculator/static/js/main.6ebb55af.js",
     "service-worker.js": "/pokemon-calculator/service-worker.js",
     "index.html": "/pokemon-calculator/index.html",
-    "main.4462d3af.css.map": "/pokemon-calculator/static/css/main.4462d3af.css.map",
+    "main.4d25c959.css.map": "/pokemon-calculator/static/css/main.4d25c959.css.map",
     "main.6ebb55af.js.map": "/pokemon-calculator/static/js/main.6ebb55af.js.map"
   },
   "entrypoints": [
-    "static/css/main.4462d3af.css",
+    "static/css/main.4d25c959.css",
     "static/js/main.6ebb55af.js"
   ]
 }
