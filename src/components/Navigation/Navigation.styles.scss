@@ -40,6 +40,8 @@
           border-top-left-radius: var(--border-radius-medium);
           border-top-right-radius: var(--border-radius-medium);
           outline-offset: 0;
+          margin-left: var(--border-width-small);
+          margin-right: var(--border-width-small);
         }
 
         a:hover,
@@ -107,6 +109,10 @@
             padding-bottom: 15px;
             border-top-right-radius: 0;
             border-bottom-left-radius: var(--border-radius-medium);
+            margin-right: 0;
+            margin-left: 0;
+            margin-top: var(--border-width-small);
+            margin-bottom: var(--border-width-small);
           }
         }
 
@@ -129,6 +135,10 @@
           border-top-right-radius: 0;
           border-bottom-left-radius: var(--border-radius-medium);
           border-right: none;
+
+          a {
+            outline-offset: 1px;
+          }
         }
       }
     }
