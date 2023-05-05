@@ -1,0 +1,11 @@
+h3 {
+  margin-bottom: var(--spacing-0);
+  cursor: default;
+}
+
+.field-group:last-child {
+  h3 {
+    text-align: center;
+    font-size: 1.25rem;
+  }
+}

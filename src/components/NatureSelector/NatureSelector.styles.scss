@@ -1,3 +1,18 @@
 select {
-  width: 11em;
+  cursor: pointer;
+  background-color: var(--input-background-color);
+  border-radius: var(--border-radius-extra-small);
+  border: none;
+  outline: none;
+  padding: var(--spacing-0) var(--spacing-0);
+  margin-bottom: var(--spacing-0);
+  margin-top: var(--spacing-0);
+  text-align: center;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+select:focus,
+select:hover {
+  outline: var(--border-width-small) solid var(--text-color);
 }
