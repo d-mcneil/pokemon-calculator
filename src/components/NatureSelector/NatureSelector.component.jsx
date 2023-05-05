@@ -54,7 +54,7 @@ const NatureSelector = ({ handleUpdateNature }) => {
   };
 
   return (
-    <select defaultValue="nature" onChange={onChange}>
+    <select defaultValue="nature" onChange={onChange} id="nature-selector">
       <option disabled value="nature" key="nature">
         Nature
       </option>

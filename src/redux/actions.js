@@ -51,3 +51,23 @@ export const resetCalculator = () => (dispatch) => {
     dispatch(incrementResetIndex());
   });
 };
+
+export const setPokemonBaseStats = (pokemonName, baseStats) => (dispatch) => {
+  batch(() => {
+    Object.keys(STAT_NAME).map((statName) =>
+      dispatch(
+        updateCalculatorField(
+          baseStats[statName],
+          FIELD_TYPE.baseStat,
+          statName
+        )
+      )
+    );
+    dispatch(updateCalculatorField(pokemonName, SELECTOR_TYPE.pokemon));
+  });
+};
+
+export const populatePokemonSelector = (pokemonArray) => ({
+  type: reduxConstants.POPULATE_POKEMON_SELECTOR,
+  payload: pokemonArray,
+});

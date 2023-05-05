@@ -4,6 +4,8 @@ export const INCREMENT_RESET_INDEX = "INCREMENT_RESET_INDEX";
 export const POKEMON_SET = "POKEMON_SET";
 export const POKEMON_RESET = "POKEMON_RESET";
 // ***************************************************************************************************************
+export const POPULATE_POKEMON_SELECTOR = "POPULATE_POKEMON_SELECTOR";
+// ***************************************************************************************************************
 export const LEVEL_SET = "LEVEL_SET";
 export const LEVEL_RESET = "LEVEL_RESET";
 // ***************************************************************************************************************

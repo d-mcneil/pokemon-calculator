@@ -3,6 +3,7 @@ import * as constants from "./constants";
 // ************************************************************ initial states ************************************************************
 const initialStateResetIndex = { resetIndex: 0 };
 const initialStatePokemon = { pokemon: "pokemon" };
+const initialStatePokemonSelector = { pokemonOptions: [] };
 const initialStateLevel = { level: 1 };
 const initialStateNature = { nature: "nature" };
 const initialStateHp = {
@@ -70,13 +71,23 @@ const resetIndex = (state = initialStateResetIndex, action = {}) => {
 const pokemon = (state = initialStatePokemon, action = {}) => {
   switch (action.type) {
     case constants.POKEMON_SET:
-      return { ...state, level: action.payload };
+      return { ...state, pokemon: action.payload };
     case constants.POKEMON_RESET:
       return { ...state, ...initialStatePokemon };
     default:
       return state;
   }
 };
+
+const pokemonSelector = (state = initialStatePokemonSelector, action = {}) => {
+  switch (action.type) {
+    case constants.POPULATE_POKEMON_SELECTOR:
+      return { ...state, pokemonOptions: action.payload };
+    default:
+      return state;
+  }
+};
+
 const level = (state = initialStateLevel, action = {}) => {
   switch (action.type) {
     case constants.LEVEL_SET:
@@ -231,6 +242,7 @@ const speed = (state = initialStateSpeed, action = {}) => {
 export const rootReducer = combineReducers({
   resetIndex,
   pokemon,
+  pokemonSelector,
   level,
   nature,
   hp,

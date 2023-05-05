@@ -128,9 +128,126 @@ export const convertStringToLabel = (string) => {
   return newString;
 };
 
+const convertKebabToCamelCase = (string) => {
+  if (!string) {
+    return;
+  }
+  let newString = string[0];
+  for (let i = 1; i < string.length; i++) {
+    if (string.charCodeAt(i - 1) === 45) {
+      newString = newString.concat(string[i].toUpperCase());
+    } else if (string.charCodeAt(i) !== 45) {
+      newString = newString.concat(string[i]);
+    }
+  }
+  return newString;
+};
+
 export const setExtremeValue = (valuesObject, fieldType, statName) => {
   return Number.isInteger(valuesObject[fieldType])
     ? valuesObject[fieldType]
     : valuesObject[fieldType][statName];
   // the MAX_VALUE and MIN_VALUE objects go one level deeper for currentStat and baseStat than they do for level, iv, and ev
 };
+
+export const cleanPokemonName = (name) => {
+  switch (name) {
+    case "mr-mime":
+      return "Mr. Mime";
+    case "mime-jr":
+      return "Mime Jr.";
+    case "mr-rime":
+      return "Mr. Rime";
+    case "tapu-lele":
+      return "Tapu Lele";
+    case "tapu-bulu":
+      return "Tapu Bulu";
+    case "tapu-fini":
+      return "Tapu Fini";
+    case "tapu-koko":
+      return "Tapu Koko";
+    case "type-null":
+      return "Type: Null";
+    case "porygon-z":
+      return "Porygon-Z";
+    case "ho-oh":
+      return "Ho-Oh";
+    case "nidoran-f":
+      return "Nidoran-F";
+    case "nidoran-m":
+      return "Nidoran-M";
+    case "flabebe":
+      return "Flabébé";
+    case "sirfetchd":
+      return "Sirfetch'd";
+    case "farfetchd":
+      return "Farfetch'd";
+    case "great-tusk":
+      return "Great Tusk";
+    case "scream-tail":
+      return "Scream Tail";
+    case "brute-bonnet":
+      return "Brute Bonnet";
+    case "flutter-mane":
+      return "Flutter Mane";
+    case "slither-wing":
+      return "Slither Wing";
+    case "sandy-shocks":
+      return "Sandy Shocks";
+    case "iron-treads":
+      return "Iron Treads";
+    case "iron-bundle":
+      return "Iron Bundle";
+    case "iron-hands":
+      return "Iron Hands";
+    case "iron-jugulis":
+      return "Iron Jugulis";
+    case "iron-moth":
+      return "Iron Moth";
+    case "iron-thorns":
+      return "Iron Thorns";
+    case "roaring-moon":
+      return "Roaring Moon";
+    case "iron-valiant":
+      return "Iron Valiant";
+    case "walking-wake":
+      return "Walking Wake";
+    case "iron-leaves":
+      return "Iron Leaves";
+    case "wo-chien":
+      return "Wo-Chien";
+    case "chien-pao":
+      return "Chien-Pao";
+    case "ting-lu":
+      return "Ting-Lu";
+    case "chi-yu":
+      return "Chi-Yu";
+    default:
+      return name.charAt(0).toUpperCase() + name.slice(1);
+  }
+};
+
+export const stringDexNumber = (number) => {
+  const string = number.toString();
+  switch (string.length) {
+    case 1:
+      return `000${string}`;
+    case 2:
+      return `00${string}`;
+    case 3:
+      return `0${string}`;
+    default:
+      return string;
+  }
+};
+
+export const fetchPokemonBaseStats = (url) =>
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+      const baseStats = {};
+      data.stats.forEach((stat) => {
+        baseStats[convertKebabToCamelCase(stat.stat.name)] = stat.base_stat;
+      });
+      return baseStats;
+    });

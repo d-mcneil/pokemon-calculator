@@ -18,6 +18,7 @@ const mapStateToProps = (state) => ({
   specialAttack: state.specialAttack,
   specialDefense: state.specialDefense,
   speed: state.speed,
+  pokemonName: state.pokemon.pokemon,
 });
 
 const FieldGroup = ({
@@ -30,6 +31,7 @@ const FieldGroup = ({
   specialAttack,
   specialDefense,
   speed,
+  pokemonName,
 }) => {
   const statArray = [hp, attack, defense, specialAttack, specialDefense, speed];
   const statNameArray = Object.keys(STAT_NAME);
@@ -76,7 +78,12 @@ const FieldGroup = ({
         : statValue; // else the value is NOT calculated, so return the current value of the stat
     const aboveRange = defaultValue > maxValue;
     const belowRange = defaultValue < minValue;
-    const key = `${resetIndex}-${fieldType}-${statName}${
+    const key = `${resetIndex}-${fieldType}-${statName}
+    ${
+      fieldType === FIELD_TYPE.baseStat ? `-${pokemonName}` : ""
+      // this line is added so that the baseStat fields reset every time that the PokemonSelector is used to select a new pokemon
+    }
+    ${
       valueIsCalculated
         ? `-${defaultValue}`
         : aboveRange || belowRange

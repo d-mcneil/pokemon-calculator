@@ -1,0 +1,6 @@
+// many styles apply to both the NatureSelector component and the PokemonSelector component
+// these styles are in ../NatureSelector/NatureSelector.styles.scss
+// and these styles use the "select" css element selector
+#pokemon-selector {
+  margin-top: var(--spacing-0);
+}

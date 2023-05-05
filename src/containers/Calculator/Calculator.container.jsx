@@ -17,6 +17,7 @@ import FieldTypeLabel from "../../components/FieldTypeLabel/FieldTypeLabel.compo
 import FieldGroup from "../FieldGroup.container";
 import "./Calculator.styles.scss";
 import StatLabel from "../../components/StatLabel/StatLabel.component";
+import PokemonSelector from "../../components/PokemonSelector/PokemonSelector.component";
 
 const mapStateToProps = (state) => ({
   level: state.level.level,
@@ -207,6 +208,7 @@ const Calculator = ({
           text={"Reset Calculator"}
           key={"reset-calculator"}
         />
+        <PokemonSelector key={`${resetIndex}-${SELECTOR_TYPE.pokemon}`} />
         <NatureSelector key={`${resetIndex}-${SELECTOR_TYPE.nature}`} />
         <div className="calculator-field-wrapper">
           <CalculatorField

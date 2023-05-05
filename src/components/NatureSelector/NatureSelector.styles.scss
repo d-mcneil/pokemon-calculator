@@ -5,11 +5,15 @@ select {
   border: none;
   outline: none;
   padding: var(--spacing-0) var(--spacing-0);
-  margin-bottom: var(--spacing-0);
-  margin-top: var(--spacing-0);
   text-align: center;
   margin-right: auto;
   margin-left: auto;
+  width: 100%;
+}
+
+#nature-selector {
+  margin-bottom: var(--spacing-0);
+  margin-top: var(--spacing-0);
 }
 
 select:focus {
