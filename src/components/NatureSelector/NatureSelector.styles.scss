@@ -12,7 +12,12 @@ select {
   margin-left: auto;
 }
 
-select:focus,
-select:hover {
+select:focus {
   outline: var(--border-width-small) solid var(--text-color);
+}
+
+@media (hover: hover) {
+  select:hover {
+    outline: var(--border-width-small) solid var(--text-color);
+  }
 }

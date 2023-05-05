@@ -11,8 +11,13 @@ button {
   width: 100%;
 }
 
-button:hover,
 button:active,
 button:focus-visible {
   outline: var(--border-width-small) solid var(--text-color);
+}
+
+@media (hover: hover) {
+  button:hover {
+    outline: var(--border-width-small) solid var(--text-color);
+  }
 }
