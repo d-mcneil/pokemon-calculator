@@ -24,19 +24,22 @@ const EvButtons = ({ maxEv }) => {
   };
 
   return (
-    <div className="button-wrapper">
-      <p>Max Evs for:</p>
-      {Object.keys(STAT_NAME).map((statName) => (
-        <Button
-          key={`max-${statName}-evs`}
-          text={convertStringToLabel(STAT_NAME_SHORT[statName]).replace(
-            " ",
-            ""
-          )}
-          onClick={() => handleMaxEv(statName)}
-        />
-      ))}
-    </div>
+    <>
+      <p className="button-wrapper-label">Max Evs for:</p>
+      <div className="button-wrapper">
+        {Object.keys(STAT_NAME).map((statName) => (
+          <Button
+            buttonClassNames={"max-button"}
+            key={`max-${statName}-evs`}
+            text={convertStringToLabel(STAT_NAME_SHORT[statName]).replace(
+              " ",
+              ""
+            )}
+            onClick={() => handleMaxEv(statName)}
+          />
+        ))}
+      </div>
+    </>
   );
 };
 
