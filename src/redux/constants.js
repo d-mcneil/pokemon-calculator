@@ -68,3 +68,7 @@ export const SPEED_EV_SET = "SPEED_EV_SET";
 export const SPEED_EV_MAX_SET = "SPEED_EV_MAX_SET";
 export const SPEED_NATURE_MODIFIER_SET = "SPEED_NATURE_MODIFIER_SET";
 export const SPEED_RESET = "SPEED_RESET";
+// ***************************************************************************************************************
+export const UPDATE_POKEMON_FILTERFIELD = "UPDATE_POKEMON_FILTERFIELD";
+export const UPDATE_NATURE_FILTERFIELD = "UPDATE_NATURE_FILTERFIELD";
+export const RESET_FILTERFIELDS = "RESET_FILTERFIELDS";

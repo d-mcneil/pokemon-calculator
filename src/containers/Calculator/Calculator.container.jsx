@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { useEffect } from "react";
 import { updateCalculatorField, resetCalculator } from "../../redux/actions";
-import { calculateField, setExtremeValue } from "../../functions";
+import { setExtremeValue } from "../../functions";
 import {
   FIELD_TYPE,
   STAT_NAME,
@@ -19,6 +19,7 @@ import "./Calculator.styles.scss";
 import StatLabel from "../../components/StatLabel/StatLabel.component";
 import PokemonSelector from "../../components/PokemonSelector/PokemonSelector.component";
 import { useCalculateField } from "../../hooks";
+import SearchBox from "../../components/SearchBox.component";
 
 const mapStateToProps = (state) => ({
   level: state.level.level,
@@ -182,7 +183,15 @@ const Calculator = ({
           buttonId={"reset-calculator"}
         />
         <PokemonSelector key={`${resetIndex}-${SELECTOR_TYPE.pokemon}`} />
+        <SearchBox
+          key={`${resetIndex}-${SELECTOR_TYPE.pokemon}-filterfield`}
+          placeholder={SELECTOR_TYPE.pokemon}
+        />
         <NatureSelector key={`${resetIndex}-${SELECTOR_TYPE.nature}`} />
+        {/* <SearchBox
+          key={`${resetIndex}-${SELECTOR_TYPE.nature}-filterfield`}
+          placeholder={SELECTOR_TYPE.nature}
+        /> */}
         <div className="calculator-field-wrapper">
           <CalculatorField
             key={`${resetIndex}-${FIELD_TYPE.level}`}

@@ -16,6 +16,10 @@ input[type="number"] {
   }
 }
 
+input[type="search"] {
+  padding-left: var(--spacing-1);
+}
+
 /***** https://www.w3schools.com/howto/howto_css_hide_arrow_number.asp *****/
 /* hide arrows in the number input field */
 input::-webkit-inner-spin-button,

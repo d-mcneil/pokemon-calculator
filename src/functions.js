@@ -125,7 +125,7 @@ export const convertStringToLabel = (string) => {
       newString = newString.concat(string[i]);
     }
   }
-  return newString;
+  return newString.replace("okemon", "okémon");
 };
 
 const convertKebabToCamelCase = (string) => {

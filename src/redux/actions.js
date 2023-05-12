@@ -38,6 +38,11 @@ export const updateNature =
     });
   };
 
+export const updateFilterfield = (searchString = "", filterfield = "") => ({
+  type: reduxConstants[`UPDATE_${constant(filterfield)}_FILTERFIELD`],
+  payload: searchString,
+});
+
 export const resetCalculator = () => (dispatch) => {
   const resetCalculatorField = (fieldTypeOrStatName) => ({
     type: `${constant(fieldTypeOrStatName)}_RESET`,
@@ -47,6 +52,8 @@ export const resetCalculator = () => (dispatch) => {
     type: reduxConstants.INCREMENT_RESET_INDEX,
   });
 
+  const resetFilterfields = () => ({ type: reduxConstants.RESET_FILTERFIELDS });
+
   const { nature, pokemon } = SELECTOR_TYPE;
   batch(() => {
     Object.keys(STAT_NAME)
@@ -54,6 +61,7 @@ export const resetCalculator = () => (dispatch) => {
       .map((fieldTypeOrStatName) =>
         dispatch(resetCalculatorField(fieldTypeOrStatName))
       );
+    dispatch(resetFilterfields());
     dispatch(incrementResetIndex());
   });
 };

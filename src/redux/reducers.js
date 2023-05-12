@@ -59,6 +59,10 @@ const initialStateSpeed = {
   evMax: 252,
   natureModifier: 1,
 };
+const initialStateFilterfields = {
+  pokemonFilterfield: "",
+  natureFilterfield: "",
+};
 // ************************************************************ reducers ************************************************************
 const resetIndex = (state = initialStateResetIndex, action = {}) => {
   switch (action.type) {
@@ -238,6 +242,19 @@ const speed = (state = initialStateSpeed, action = {}) => {
       return state;
   }
 };
+
+const filterfields = (state = initialStateFilterfields, action = {}) => {
+  switch (action.type) {
+    case constants.UPDATE_POKEMON_FILTERFIELD:
+      return { ...state, pokemonFilterfield: action.payload };
+    case constants.UPDATE_NATURE_FILTERFIELD:
+      return { ...state, natureFilterfield: action.payload };
+    case constants.RESET_FILTERFIELDS:
+      return { ...state, ...initialStateFilterfields };
+    default:
+      return state;
+  }
+};
 // ************************************************************ combine reducers ************************************************************
 export const rootReducer = combineReducers({
   resetIndex,
@@ -251,4 +268,5 @@ export const rootReducer = combineReducers({
   specialAttack,
   specialDefense,
   speed,
+  filterfields,
 });

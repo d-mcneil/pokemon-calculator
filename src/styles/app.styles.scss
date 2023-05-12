@@ -5,11 +5,17 @@ select {
 
 button,
 select,
-input[type="number"] {
+input[type="number"],
+input[type="search"] {
   background-color: var(--input-background-color);
   border-radius: var(--border-radius-extra-small);
   border: none;
   outline: none;
+}
+
+button,
+select,
+input[type="number"] {
   text-align: center;
 }
 
@@ -34,7 +40,8 @@ p,
 input[type="number"],
 select,
 button,
-.button-wrapper {
+.button-wrapper,
+input[type="search"] {
   margin-bottom: var(--spacing-0);
 }
 
@@ -47,7 +54,8 @@ button,
 }
 
 select,
-#reset-calculator {
+#reset-calculator,
+input[type="search"] {
   margin-right: auto;
   margin-left: auto;
   width: 100%;
