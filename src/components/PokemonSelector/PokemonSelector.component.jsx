@@ -9,7 +9,6 @@ import {
   fetchPokemonBaseStats,
   stringDexNumber,
 } from "../../functions";
-import "./PokemonSelector.styles.scss";
 
 const mapStateToProps = (state) => ({
   pokemonOptions: state.pokemonSelector.pokemonOptions,

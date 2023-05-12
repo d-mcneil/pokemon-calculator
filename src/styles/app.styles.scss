@@ -1,0 +1,53 @@
+button,
+select {
+  cursor: pointer;
+}
+
+button,
+select,
+input[type="number"] {
+  background-color: var(--input-background-color);
+  border-radius: var(--border-radius-extra-small);
+  border: none;
+  outline: none;
+  text-align: center;
+}
+
+@media (hover: hover) {
+  select:hover,
+  input[type="number"]:hover,
+  button:hover {
+    outline: var(--border-width-small) solid var(--text-color);
+  }
+}
+
+select:focus,
+input[type="number"]:focus,
+button:active,
+button:focus-visible {
+  outline: var(--border-width-small) solid var(--text-color);
+}
+
+label,
+h3,
+p,
+input[type="number"],
+select,
+button {
+  margin-bottom: var(--spacing-0);
+}
+
+.calculator-field-wrapper:last-child {
+  input[type="number"],
+  p,
+  label {
+    margin-bottom: 0;
+  }
+}
+
+select,
+#reset-calculator {
+  margin-right: auto;
+  margin-left: auto;
+  width: 100%;
+}

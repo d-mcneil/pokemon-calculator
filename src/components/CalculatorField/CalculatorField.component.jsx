@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { updateCalculatorField } from "../../redux/actions";
 import { MAX_VALUE, MIN_VALUE } from "../../constantsNonRedux";
 import { setExtremeValue } from "../../functions";
-import "./CalculatorField.styles.scss";
 
 const mapDispatchToProps = (dispatch) => ({
   updateCalculatorField: (payload, fieldType, statName) =>

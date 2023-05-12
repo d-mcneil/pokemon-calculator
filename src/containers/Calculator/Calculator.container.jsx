@@ -179,7 +179,7 @@ const Calculator = ({
           onClick={handleResetCalculator}
           text={"Reset Calculator"}
           key={"reset-calculator"}
-          id={"reset-calculator"}
+          buttonId={"reset-calculator"}
         />
         <PokemonSelector key={`${resetIndex}-${SELECTOR_TYPE.pokemon}`} />
         <NatureSelector key={`${resetIndex}-${SELECTOR_TYPE.nature}`} />
