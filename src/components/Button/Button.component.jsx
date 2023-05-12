@@ -1,8 +1,16 @@
 import React from "react";
-import "./Button.styles.scss";
 
-const Button = ({ onClick, text }) => {
-  return <button onClick={onClick}>{text}</button>;
+const Button = ({
+  onClick,
+  text,
+  buttonId = undefined,
+  buttonClassNames = undefined,
+}) => {
+  return (
+    <button onClick={onClick} className={buttonClassNames} id={buttonId}>
+      {text}
+    </button>
+  );
 };
 
 export default Button;

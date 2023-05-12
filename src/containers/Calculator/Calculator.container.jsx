@@ -18,6 +18,7 @@ import FieldGroup from "../FieldGroup.container";
 import "./Calculator.styles.scss";
 import StatLabel from "../../components/StatLabel/StatLabel.component";
 import PokemonSelector from "../../components/PokemonSelector/PokemonSelector.component";
+import { useCalculateField } from "../../hooks";
 
 const mapStateToProps = (state) => ({
   level: state.level.level,
@@ -48,6 +49,7 @@ const Calculator = ({
   calculatedFieldType,
   handleUpdateCalculatorField,
   handleResetCalculator,
+  children,
 }) => {
   // have the navigation bar change which tab is highlighted according to which link is selected
   useEffect(() => {
@@ -103,85 +105,55 @@ const Calculator = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [calculatedFieldType]);
 
-  const dependencyArrayHp = [
+  useCalculateField(
+    hp,
     level,
-    hp[`${fieldTypeArray[0]}`],
-    hp[`${fieldTypeArray[1]}`],
-    hp[`${fieldTypeArray[2]}`],
-  ];
-  // recalculate hp... hp is not affected by nature, so forumla is different
-  useEffect(() => {
-    const result = calculateField(
-      calculatedFieldType,
-      true,
-      level,
-      hp.baseStat,
-      hp.iv,
-      hp.ev,
-      hp.currentStat
-    );
-    handleUpdateCalculatorField(
-      result.value,
-      calculatedFieldType,
-      STAT_NAME.hp
-    );
-    if (result.maxValue) {
-      handleUpdateCalculatorField(
-        result.maxValue,
-        `${calculatedFieldType}Max`,
-        STAT_NAME.hp
-      );
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [...dependencyArrayHp]);
-
-  // custom hook
-  const useCalculateField = (stat, level, fieldType, statName) => {
-    const dependencyArray = [
-      level,
-      stat[`${fieldTypeArray[0]}`],
-      stat[`${fieldTypeArray[1]}`],
-      stat[`${fieldTypeArray[2]}`],
-      stat.natureModifier,
-    ];
-    return useEffect(() => {
-      const result = calculateField(
-        calculatedFieldType,
-        false,
-        level,
-        stat.baseStat,
-        stat.iv,
-        stat.ev,
-        stat.currentStat,
-        stat.natureModifier
-      );
-      handleUpdateCalculatorField(result.value, fieldType, statName);
-      if (result.maxValue) {
-        handleUpdateCalculatorField(
-          result.maxValue,
-          `${fieldType}Max`,
-          statName
-        );
-      }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [...dependencyArray]);
-  };
-  // recalculate other stats using custom hook
-  useCalculateField(attack, level, calculatedFieldType, STAT_NAME.attack);
-  useCalculateField(defense, level, calculatedFieldType, STAT_NAME.defense);
+    calculatedFieldType,
+    STAT_NAME.hp,
+    fieldTypeArray,
+    handleUpdateCalculatorField,
+    true
+  );
+  useCalculateField(
+    attack,
+    level,
+    calculatedFieldType,
+    STAT_NAME.attack,
+    fieldTypeArray,
+    handleUpdateCalculatorField
+  );
+  useCalculateField(
+    defense,
+    level,
+    calculatedFieldType,
+    STAT_NAME.defense,
+    fieldTypeArray,
+    handleUpdateCalculatorField
+  );
   useCalculateField(
     specialAttack,
     level,
     calculatedFieldType,
-    STAT_NAME.specialAttack
+    STAT_NAME.specialAttack,
+    fieldTypeArray,
+    handleUpdateCalculatorField
   );
   useCalculateField(
     specialDefense,
     level,
     calculatedFieldType,
-    STAT_NAME.specialDefense
+    STAT_NAME.specialDefense,
+    fieldTypeArray,
+    handleUpdateCalculatorField
   );
-  useCalculateField(speed, level, calculatedFieldType, STAT_NAME.speed);
+  useCalculateField(
+    speed,
+    level,
+    calculatedFieldType,
+    STAT_NAME.speed,
+    fieldTypeArray,
+    handleUpdateCalculatorField
+  );
 
   const renderCalculatorFields = () => {
     return fieldTypeArray.map((fieldType) => {
@@ -207,6 +179,7 @@ const Calculator = ({
           onClick={handleResetCalculator}
           text={"Reset Calculator"}
           key={"reset-calculator"}
+          id={"reset-calculator"}
         />
         <PokemonSelector key={`${resetIndex}-${SELECTOR_TYPE.pokemon}`} />
         <NatureSelector key={`${resetIndex}-${SELECTOR_TYPE.nature}`} />
@@ -223,6 +196,7 @@ const Calculator = ({
             labelIsFor="calculator-field-level"
           />
         </div>
+        {children}
       </div>
       {renderCalculatorFields()}
     </main>

@@ -6,9 +6,6 @@ button {
   outline: none;
   padding: var(--spacing-0) var(--spacing-1);
   text-align: center;
-  margin-right: auto;
-  margin-left: auto;
-  width: 100%;
 }
 
 button:active,
@@ -20,4 +17,10 @@ button:focus-visible {
   button:hover {
     outline: var(--border-width-small) solid var(--text-color);
   }
+}
+
+#reset-calculator {
+  margin-right: auto;
+  margin-left: auto;
+  width: 100%;
 }

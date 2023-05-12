@@ -9,6 +9,7 @@ import configureStore from "./redux/store";
 import App from "./containers/App";
 
 import "./index.scss";
+import "../src/styles/buttons.styles.scss";
 
 const store = configureStore();
 
