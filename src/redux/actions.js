@@ -1,7 +1,13 @@
 import { batch } from "react-redux";
 import * as reduxConstants from "./constants";
 import { convertStringToConstantSyntax as constant } from "../functions";
-import { STAT_NAME, FIELD_TYPE, SELECTOR_TYPE } from "../constantsNonRedux";
+import {
+  STAT_NAME,
+  FIELD_TYPE,
+  SELECTOR_TYPE,
+  MAX_VALUE,
+} from "../constantsNonRedux";
+import { MIN_VALUE } from "../constantsNonRedux";
 
 export const updateCalculatorField = (
   payload,
@@ -71,3 +77,28 @@ export const populatePokemonSelector = (pokemonArray) => ({
   type: reduxConstants.POPULATE_POKEMON_SELECTOR,
   payload: pokemonArray,
 });
+
+export const maxIv =
+  ({ attack = true, speed = true }) =>
+  (dispatch) => {
+    batch(() => {
+      Object.keys(STAT_NAME).forEach((statName) => {
+        let payload;
+
+        if (
+          (statName === STAT_NAME.attack && !attack) ||
+          (statName === STAT_NAME.speed && !speed)
+        ) {
+          payload = MIN_VALUE.iv;
+          dispatch(updateCalculatorField(payload, FIELD_TYPE.iv, statName));
+        } else {
+          payload = MAX_VALUE.iv;
+          dispatch(updateCalculatorField(payload, FIELD_TYPE.iv, statName));
+        }
+
+        document.getElementById(
+          `calculator-field-${FIELD_TYPE.iv}-${statName}`
+        ).value = payload;
+      });
+    });
+  };

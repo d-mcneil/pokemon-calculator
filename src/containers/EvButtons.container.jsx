@@ -25,7 +25,7 @@ const EvButtons = ({ maxEv }) => {
 
   return (
     <>
-      <p className="button-wrapper-label">Max Evs for:</p>
+      <p className="button-wrapper-label">Max EVs:</p>
       <div className="button-wrapper">
         {Object.keys(STAT_NAME).map((statName) => (
           <Button

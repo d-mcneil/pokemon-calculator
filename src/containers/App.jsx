@@ -2,7 +2,8 @@ import { Routes, Route } from "react-router-dom";
 import Navigation from "../components/Navigation/Navigation.component";
 import { FIELD_TYPE } from "../constantsNonRedux";
 import Calculator from "./Calculator/Calculator.container";
-import EvButtonsContainer from "./EvButtons.container";
+import EvButtons from "./EvButtons.container";
+import IvButtons from "./IvButtons.container";
 
 const App = () => {
   return (
@@ -11,19 +12,24 @@ const App = () => {
         <Route
           element={
             <Calculator calculatedFieldType={FIELD_TYPE.currentStat}>
-              <EvButtonsContainer />
+              <IvButtons />
+              <EvButtons />
             </Calculator>
           }
           index
         />
         <Route
-          element={<Calculator calculatedFieldType={FIELD_TYPE.ev} />}
+          element={
+            <Calculator calculatedFieldType={FIELD_TYPE.ev}>
+              <IvButtons />
+            </Calculator>
+          }
           path={"ev"}
         />
         <Route
           element={
             <Calculator calculatedFieldType={FIELD_TYPE.iv}>
-              <EvButtonsContainer />
+              <EvButtons />
             </Calculator>
           }
           path={"iv"}

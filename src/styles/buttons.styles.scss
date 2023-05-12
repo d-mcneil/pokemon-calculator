@@ -4,13 +4,16 @@ button {
 
 .button-wrapper {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: auto auto auto;
   gap: var(--spacing-0);
 
   .max-button {
-    justify-self: center;
     width: 100%;
     margin: 0;
     padding: 0 var(--spacing-1);
   }
+}
+
+.button-wrapper:last-child {
+  margin-bottom: 0;
 }
