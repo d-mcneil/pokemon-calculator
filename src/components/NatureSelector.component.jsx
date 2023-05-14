@@ -1,8 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
-import { convertStringToLabel as label } from "../../functions";
-import { NATURE, STAT_NAME_SHORT } from "../../constantsNonRedux";
-import { updateNature } from "../../redux/actions";
+import { convertStringToLabel as label } from "../functions";
+import { NATURE, STAT_NAME_SHORT } from "../constantsNonRedux";
+import { updateNature } from "../redux/actions";
 
 const mapDispatchToProps = (dispatch) => ({
   handleUpdateNature: (natureModifierPayload, natureValue) =>

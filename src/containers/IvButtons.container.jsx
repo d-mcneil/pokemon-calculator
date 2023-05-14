@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { maxIv } from "../redux/actions";
-import Button from "../components/Button/Button.component";
+import Button from "../components/Button.component";
 
 const mapDispatchToProps = (dispatch) => ({
   handleMaxIv: ({ attack = true, speed = true }) =>

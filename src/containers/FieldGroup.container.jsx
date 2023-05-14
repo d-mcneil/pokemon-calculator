@@ -1,7 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import CalculatorField from "../components/CalculatorField/CalculatorField.component";
-import StatLabel from "../components/StatLabel/StatLabel.component";
 import {
   FIELD_TYPE,
   MAX_VALUE,
@@ -9,6 +7,8 @@ import {
   STAT_NAME,
 } from "../constantsNonRedux";
 import { setExtremeValue } from "../functions";
+import CalculatorField from "../components/CalculatorField.component";
+import StatLabel from "../components/StatLabel.component";
 
 const mapStateToProps = (state) => ({
   resetIndex: state.resetIndex.resetIndex,

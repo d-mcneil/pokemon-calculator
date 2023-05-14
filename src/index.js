@@ -10,10 +10,12 @@ import App from "./containers/App";
 
 import "./index.scss";
 import "../src/styles/app.styles.scss";
+import "../src/styles/Navigation.styles.scss";
+import "../src/styles/Calculator.styles.scss";
 import "../src/styles/buttons.styles.scss";
-import "../src/styles/selectors.styles.scss";
-import "../src/styles/labels.styles.scss";
 import "../src/styles/inputs.styles.scss";
+import "../src/styles/labels.styles.scss";
+import "../src/styles/selectors.styles.scss";
 
 const store = configureStore();
 

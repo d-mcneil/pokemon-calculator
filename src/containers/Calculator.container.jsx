@@ -1,25 +1,24 @@
 import React from "react";
 import { connect } from "react-redux";
 import { useEffect } from "react";
-import { updateCalculatorField, resetCalculator } from "../../redux/actions";
-import { setExtremeValue } from "../../functions";
+import { updateCalculatorField, resetCalculator } from "../redux/actions";
+import { setExtremeValue } from "../functions";
+import { useCalculateField } from "../hooks";
 import {
   FIELD_TYPE,
   STAT_NAME,
   SELECTOR_TYPE,
   MAX_VALUE,
   MIN_VALUE,
-} from "../../constantsNonRedux";
-import CalculatorField from "../../components/CalculatorField/CalculatorField.component";
-import NatureSelector from "../../components/NatureSelector/NatureSelector.component";
-import Button from "../../components/Button/Button.component";
-import FieldTypeLabel from "../../components/FieldTypeLabel/FieldTypeLabel.component";
-import FieldGroup from "../FieldGroup.container";
-import "./Calculator.styles.scss";
-import StatLabel from "../../components/StatLabel/StatLabel.component";
-import PokemonSelector from "../../components/PokemonSelector/PokemonSelector.component";
-import { useCalculateField } from "../../hooks";
-import SearchBox from "../../components/SearchBox.component";
+} from "../constantsNonRedux";
+import FieldGroup from "./FieldGroup.container";
+import CalculatorField from "../components/CalculatorField.component";
+import NatureSelector from "../components/NatureSelector.component";
+import Button from "../components/Button.component";
+import FieldTypeLabel from "../components/FieldTypeLabel.component";
+import StatLabel from "../components/StatLabel.component";
+import PokemonSelector from "../components/PokemonSelector.component";
+import SearchBox from "../components/SearchBox.component";
 
 const mapStateToProps = (state) => ({
   level: state.level.level,

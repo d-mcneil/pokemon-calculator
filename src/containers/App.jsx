@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
-import Navigation from "../components/Navigation/Navigation.component";
 import { FIELD_TYPE } from "../constantsNonRedux";
-import Calculator from "./Calculator/Calculator.container";
+import Navigation from "./Navigation.container";
+import Calculator from "./Calculator.container";
 import EvButtons from "./EvButtons.container";
 import IvButtons from "./IvButtons.container";
 

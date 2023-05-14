@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import Button from "../components/Button/Button.component";
 import {
   STAT_NAME,
   MAX_VALUE,
@@ -9,6 +8,7 @@ import {
 } from "../constantsNonRedux";
 import { convertStringToLabel } from "../functions";
 import { updateCalculatorField } from "../redux/actions";
+import Button from "../components/Button.component";
 
 const mapDispatchToProps = (dispatch) => ({
   maxEv: (statName) =>

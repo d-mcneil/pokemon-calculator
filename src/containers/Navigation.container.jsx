@@ -1,8 +1,6 @@
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
-
-import "./Navigation.styles.scss";
-import { FIELD_TYPE } from "../../constantsNonRedux";
+import { FIELD_TYPE } from "../constantsNonRedux";
 
 const Navigation = () => {
   return (

@@ -1,15 +1,12 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import {
-  populatePokemonSelector,
-  setPokemonBaseStats,
-} from "../../redux/actions";
+import { populatePokemonSelector, setPokemonBaseStats } from "../redux/actions";
 import {
   cleanPokemonName,
   fetchPokemonBaseStats,
   stringDexNumber,
-} from "../../functions";
-import { MAX_VALUE, SELECTOR_TYPE } from "../../constantsNonRedux";
+} from "../functions";
+import { MAX_VALUE, SELECTOR_TYPE } from "../constantsNonRedux";
 
 const mapStateToProps = (state) => ({
   pokemonOptions: state.pokemonSelector.pokemonOptions,

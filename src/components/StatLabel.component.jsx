@@ -1,5 +1,5 @@
 import React from "react";
-import { convertStringToLabel as label } from "../../functions";
+import { convertStringToLabel as label } from "../functions";
 
 const StatLabel = ({ statName, labelIsFor }) => {
   return (
