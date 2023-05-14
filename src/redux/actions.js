@@ -6,8 +6,8 @@ import {
   FIELD_TYPE,
   SELECTOR_TYPE,
   MAX_VALUE,
+  MIN_VALUE,
 } from "../constantsNonRedux";
-import { MIN_VALUE } from "../constantsNonRedux";
 
 export const updateCalculatorField = (
   payload,

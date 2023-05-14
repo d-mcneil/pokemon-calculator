@@ -1,5 +1,6 @@
 import { combineReducers } from "redux";
 import * as constants from "./constants";
+
 // ************************************************************ initial states ************************************************************
 const initialStateResetIndex = { resetIndex: 0 };
 const initialStatePokemon = { pokemon: "pokemon" };
@@ -14,6 +15,7 @@ const initialStateHp = {
   ev: 0,
   evMax: 252,
 };
+
 const initialStateAttack = {
   baseStat: 0,
   currentStat: 5,
@@ -23,6 +25,7 @@ const initialStateAttack = {
   evMax: 252,
   natureModifier: 1,
 };
+
 const initialStateDefense = {
   baseStat: 0,
   currentStat: 5,
@@ -32,6 +35,7 @@ const initialStateDefense = {
   evMax: 252,
   natureModifier: 1,
 };
+
 const initialStateSpecialAttack = {
   baseStat: 0,
   currentStat: 5,
@@ -41,6 +45,7 @@ const initialStateSpecialAttack = {
   evMax: 252,
   natureModifier: 1,
 };
+
 const initialStateSpecialDefense = {
   baseStat: 0,
   currentStat: 5,
@@ -50,6 +55,7 @@ const initialStateSpecialDefense = {
   evMax: 252,
   natureModifier: 1,
 };
+
 const initialStateSpeed = {
   baseStat: 0,
   currentStat: 5,
@@ -59,10 +65,12 @@ const initialStateSpeed = {
   evMax: 252,
   natureModifier: 1,
 };
+
 const initialStateFilterfields = {
   pokemonFilterfield: "",
   natureFilterfield: "",
 };
+
 // ************************************************************ reducers ************************************************************
 const resetIndex = (state = initialStateResetIndex, action = {}) => {
   switch (action.type) {
@@ -72,6 +80,7 @@ const resetIndex = (state = initialStateResetIndex, action = {}) => {
       return state;
   }
 };
+
 const pokemon = (state = initialStatePokemon, action = {}) => {
   switch (action.type) {
     case constants.POKEMON_SET:
@@ -102,6 +111,7 @@ const level = (state = initialStateLevel, action = {}) => {
       return state;
   }
 };
+
 const nature = (state = initialStateNature, action = {}) => {
   switch (action.type) {
     case constants.NATURE_SET:
@@ -112,6 +122,7 @@ const nature = (state = initialStateNature, action = {}) => {
       return state;
   }
 };
+
 const hp = (state = initialStateHp, action = {}) => {
   switch (action.type) {
     case constants.HP_BASE_STAT_SET:
@@ -132,6 +143,7 @@ const hp = (state = initialStateHp, action = {}) => {
       return state;
   }
 };
+
 const attack = (state = initialStateAttack, action = {}) => {
   switch (action.type) {
     case constants.ATTACK_BASE_STAT_SET:
@@ -154,6 +166,7 @@ const attack = (state = initialStateAttack, action = {}) => {
       return state;
   }
 };
+
 const defense = (state = initialStateDefense, action = {}) => {
   switch (action.type) {
     case constants.DEFENSE_BASE_STAT_SET:
@@ -176,6 +189,7 @@ const defense = (state = initialStateDefense, action = {}) => {
       return state;
   }
 };
+
 const specialAttack = (state = initialStateSpecialAttack, action = {}) => {
   switch (action.type) {
     case constants.SPECIAL_ATTACK_BASE_STAT_SET:
@@ -198,6 +212,7 @@ const specialAttack = (state = initialStateSpecialAttack, action = {}) => {
       return state;
   }
 };
+
 const specialDefense = (state = initialStateSpecialDefense, action = {}) => {
   switch (action.type) {
     case constants.SPECIAL_DEFENSE_BASE_STAT_SET:
@@ -220,6 +235,7 @@ const specialDefense = (state = initialStateSpecialDefense, action = {}) => {
       return state;
   }
 };
+
 const speed = (state = initialStateSpeed, action = {}) => {
   switch (action.type) {
     case constants.SPEED_BASE_STAT_SET:
@@ -255,6 +271,7 @@ const filterfields = (state = initialStateFilterfields, action = {}) => {
       return state;
   }
 };
+
 // ************************************************************ combine reducers ************************************************************
 export const rootReducer = combineReducers({
   resetIndex,

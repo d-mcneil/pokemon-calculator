@@ -1,6 +1,8 @@
-export const INCREMENT_RESET_INDEX = "INCREMENT_RESET_INDEX";
-// route
+// route - probably not needed as that could be passed down into the corresponding calculator component
 // game
+
+export const INCREMENT_RESET_INDEX = "INCREMENT_RESET_INDEX";
+// ***************************************************************************************************************
 export const POKEMON_SET = "POKEMON_SET";
 export const POKEMON_RESET = "POKEMON_RESET";
 // ***************************************************************************************************************

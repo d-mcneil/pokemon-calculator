@@ -95,27 +95,6 @@ const PokemonSelector = ({
         }
       }
     }
-
-    // if (
-    //   !filteredPokemonOptions.length ||
-    //   (filteredPokemonOptions.length === MAX_VALUE.dexNumber &&
-    //     currentPokemonName === SELECTOR_TYPE.pokemon)
-    // ) {
-    // } else if (pokemonSelectorElement !== document.activeElement) {
-    //   if (filterfield === "") {
-    //     pokemonSelectorElement.value = SELECTOR_TYPE.pokemon;
-    //   } else {
-    //     const { name, url } = filteredPokemonOptions[0];
-    //     pokemonSelectorElement.value = url;
-    //     if (
-    //       filteredPokemonOptions.length === 1 &&
-    //       name !== currentPokemonName
-    //     ) {
-    //       handleFetchPokemonBaseStats(url, name);
-    //     }
-    //   }
-    // }
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filteredPokemonOptions]);
 
