@@ -50,6 +50,7 @@ export const MAX_VALUE = {
   },
   iv: 31,
   ev: 252,
+  dexNumber: 1010,
 };
 
 export const MIN_VALUE = {

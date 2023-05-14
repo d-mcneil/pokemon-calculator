@@ -22,6 +22,7 @@ input[type="number"] {
 @media (hover: hover) {
   select:hover,
   input[type="number"]:hover,
+  input[type="search"]:hover,
   button:hover {
     outline: var(--border-width-small) solid var(--text-color);
   }
@@ -29,6 +30,7 @@ input[type="number"] {
 
 select:focus,
 input[type="number"]:focus,
+input[type="search"]:focus,
 button:active,
 button:focus-visible {
   outline: var(--border-width-small) solid var(--text-color);

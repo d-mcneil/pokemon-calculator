@@ -9,9 +9,12 @@ import {
   fetchPokemonBaseStats,
   stringDexNumber,
 } from "../../functions";
+import { MAX_VALUE, SELECTOR_TYPE } from "../../constantsNonRedux";
 
 const mapStateToProps = (state) => ({
   pokemonOptions: state.pokemonSelector.pokemonOptions,
+  filterfield: state.filterfields.pokemonFilterfield,
+  currentPokemonName: state.pokemon.pokemon,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -23,12 +26,17 @@ const mapDispatchToProps = (dispatch) => ({
 
 const PokemonSelector = ({
   pokemonOptions,
+  filterfield,
+  currentPokemonName,
   handlePopulatePokemonSelector,
   handleSelectPokemon,
 }) => {
+  // populate the pokemon selector
   useEffect(() => {
     if (!pokemonOptions.length) {
-      fetch("https://pokeapi.co/api/v2/pokemon-species/?limit=1010")
+      fetch(
+        `https://pokeapi.co/api/v2/pokemon-species/?limit=${MAX_VALUE.dexNumber}`
+      )
         .then((response) => response.json())
         .then((data) =>
           data.results.map((pokemonObject, index) => {
@@ -45,18 +53,73 @@ const PokemonSelector = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleOnChange = (event) => {
-    fetchPokemonBaseStats(event.target.value)
+  const handleFetchPokemonBaseStats = (url, name) =>
+    fetchPokemonBaseStats(url)
       .then((baseStats) => {
-        handleSelectPokemon(
-          event.target.selectedOptions[0].getAttribute("data-name"),
-          baseStats
-        );
+        handleSelectPokemon(name, baseStats);
       })
       .catch(console.log);
-  };
 
-  const renderPokemonOptions = pokemonOptions.map((pokemon) => {
+  const handleOnChange = (event) =>
+    handleFetchPokemonBaseStats(
+      event.target.value,
+      event.target.selectedOptions[0].getAttribute("data-name")
+    );
+
+  const filteredPokemonOptions = pokemonOptions.filter((pokemon) =>
+    cleanPokemonName(pokemon.name)
+      .toLowerCase()
+      .includes(filterfield.toLowerCase())
+  );
+
+  // auto search if there is only one pokemon that includes the string in the filterfield
+  // and
+  // handle the option that is displayed in pokemonSelector when the filterfield is being used
+  useEffect(() => {
+    const pokemonSelectorElement = document.getElementById("pokemon-selector");
+
+    if (pokemonSelectorElement !== document.activeElement) {
+      // this means that the filterfield is being used and not the selector element itself
+      // if it is the pokemonSelector itself that is being used to select pokemon, then filtering doesn't matter in the display of the selector
+
+      if (!filteredPokemonOptions.length || filterfield === "") {
+        pokemonSelectorElement.value = SELECTOR_TYPE.pokemon;
+      } else {
+        const { name, url } = filteredPokemonOptions[0];
+        pokemonSelectorElement.value = url;
+        if (
+          filteredPokemonOptions.length === 1 &&
+          name !== currentPokemonName
+        ) {
+          handleFetchPokemonBaseStats(url, name);
+        }
+      }
+    }
+
+    // if (
+    //   !filteredPokemonOptions.length ||
+    //   (filteredPokemonOptions.length === MAX_VALUE.dexNumber &&
+    //     currentPokemonName === SELECTOR_TYPE.pokemon)
+    // ) {
+    // } else if (pokemonSelectorElement !== document.activeElement) {
+    //   if (filterfield === "") {
+    //     pokemonSelectorElement.value = SELECTOR_TYPE.pokemon;
+    //   } else {
+    //     const { name, url } = filteredPokemonOptions[0];
+    //     pokemonSelectorElement.value = url;
+    //     if (
+    //       filteredPokemonOptions.length === 1 &&
+    //       name !== currentPokemonName
+    //     ) {
+    //       handleFetchPokemonBaseStats(url, name);
+    //     }
+    //   }
+    // }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filteredPokemonOptions]);
+
+  const renderPokemonOptions = filteredPokemonOptions.map((pokemon) => {
     const { name, dexNumber, url } = pokemon;
 
     // prettier-ignore
@@ -74,11 +137,11 @@ const PokemonSelector = ({
 
   return (
     <select
-      defaultValue={"pokemon"}
+      defaultValue={SELECTOR_TYPE.pokemon}
       onChange={handleOnChange}
       id="pokemon-selector"
     >
-      <option disabled value={"pokemon"}>
+      <option disabled value={SELECTOR_TYPE.pokemon}>
         Select a Pokémon
       </option>
       {renderPokemonOptions}
