@@ -172,6 +172,12 @@ const Calculator = ({
     });
   };
 
+  const handleSetLevel = (level) => {
+    handleUpdateCalculatorField(level, FIELD_TYPE.level);
+    document.getElementById(`calculator-field-${FIELD_TYPE.level}`).value =
+      level;
+  };
+
   return (
     <main className="calculator-container">
       <div className="field-group">
@@ -191,19 +197,33 @@ const Calculator = ({
           key={`${resetIndex}-${SELECTOR_TYPE.nature}-filterfield`}
           placeholder={SELECTOR_TYPE.nature}
         /> */}
-        <div className="calculator-field-wrapper">
-          <CalculatorField
-            key={`${resetIndex}-${FIELD_TYPE.level}`}
-            defaultValue={level}
-            fieldType={FIELD_TYPE.level}
-            id="calculator-field-level"
+
+        <div className="button-wrapper" id="level-wrapper">
+          <div className="calculator-field-wrapper">
+            <CalculatorField
+              key={`${resetIndex}-${FIELD_TYPE.level}`}
+              defaultValue={level}
+              fieldType={FIELD_TYPE.level}
+              id="calculator-field-level"
+            />
+            <StatLabel
+              statName={FIELD_TYPE.level}
+              key={`${FIELD_TYPE.level}-label`}
+              labelIsFor="calculator-field-level"
+            />
+          </div>
+          <Button
+            text={50}
+            buttonClassNames={"max-button level-button"}
+            onClick={() => handleSetLevel(50)}
           />
-          <StatLabel
-            statName={FIELD_TYPE.level}
-            key={`${FIELD_TYPE.level}-label`}
-            labelIsFor="calculator-field-level"
+          <Button
+            text={100}
+            buttonClassNames={"max-button level-button"}
+            onClick={() => handleSetLevel(100)}
           />
         </div>
+
         {children}
       </div>
       {renderCalculatorFields()}

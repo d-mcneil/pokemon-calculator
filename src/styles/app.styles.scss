@@ -55,6 +55,25 @@ input[type="search"] {
   }
 }
 
+.button-wrapper#level-wrapper {
+  display: flex;
+  gap: 0;
+
+  .calculator-field-wrapper {
+    flex: 0 0 auto;
+
+    input[type="number"],
+    label {
+      margin-bottom: 0;
+    }
+
+    label {
+      margin-left: var(--spacing-0);
+      margin-right: var(--spacing-1);
+    }
+  }
+}
+
 select,
 #reset-calculator,
 input[type="search"] {

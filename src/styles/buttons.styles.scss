@@ -12,6 +12,14 @@ button {
     margin: 0;
     padding: 0 var(--spacing-1);
   }
+
+  .level-button {
+    padding: 0;
+  }
+
+  .level-button:last-child {
+    margin-left: var(--spacing-0);
+  }
 }
 
 .button-wrapper:last-child {
