@@ -86,27 +86,20 @@ export const populatePokemonSelector = (pokemonArray) => ({
   payload: pokemonArray,
 });
 
-export const maxIv =
-  ({ attack = true, speed = true }) =>
-  (dispatch) => {
-    batch(() => {
-      Object.keys(STAT_NAME).forEach((statName) => {
-        let payload;
-
-        if (
-          (statName === STAT_NAME.attack && !attack) ||
-          (statName === STAT_NAME.speed && !speed)
-        ) {
-          payload = MIN_VALUE.iv;
-          dispatch(updateCalculatorField(payload, FIELD_TYPE.iv, statName));
-        } else {
-          payload = MAX_VALUE.iv;
-          dispatch(updateCalculatorField(payload, FIELD_TYPE.iv, statName));
-        }
-
-        document.getElementById(
-          `calculator-field-${FIELD_TYPE.iv}-${statName}`
-        ).value = payload;
-      });
+export const maxIv = () => (dispatch) => {
+  batch(() => {
+    Object.keys(STAT_NAME).forEach((statName) => {
+      dispatch(updateCalculatorField(MAX_VALUE.iv, FIELD_TYPE.iv, statName));
+      document.getElementById(
+        `calculator-field-${FIELD_TYPE.iv}-${statName}`
+      ).value = MAX_VALUE.iv;
     });
-  };
+  });
+};
+
+export const minIV = (statName) => (dispatch) => {
+  dispatch(updateCalculatorField(MIN_VALUE.iv, FIELD_TYPE.iv, statName));
+  document.getElementById(
+    `calculator-field-${FIELD_TYPE.iv}-${statName}`
+  ).value = MIN_VALUE.iv;
+};

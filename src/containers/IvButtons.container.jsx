@@ -1,14 +1,15 @@
 import React from "react";
 import { connect } from "react-redux";
-import { maxIv } from "../redux/actions";
+import { maxIv, minIV } from "../redux/actions";
 import Button from "../components/Button.component";
+import { STAT_NAME } from "../constantsNonRedux";
 
 const mapDispatchToProps = (dispatch) => ({
-  handleMaxIv: ({ attack = true, speed = true }) =>
-    dispatch(maxIv({ attack, speed })),
+  handleMaxIv: () => dispatch(maxIv()),
+  handleMinIv: (statName) => dispatch(minIV(statName)),
 });
 
-const IvButtons = ({ handleMaxIv }) => {
+const IvButtons = ({ handleMaxIv, handleMinIv }) => {
   return (
     <>
       <p className="button-wrapper-label">Max IVs:</p>
@@ -21,12 +22,12 @@ const IvButtons = ({ handleMaxIv }) => {
         <Button
           buttonClassNames={"max-button"}
           text="-Spe"
-          onClick={() => handleMaxIv({ speed: false })}
+          onClick={() => handleMinIv(STAT_NAME.speed)}
         />
         <Button
           buttonClassNames={"max-button"}
           text="-Atk"
-          onClick={() => handleMaxIv({ attack: false })}
+          onClick={() => handleMinIv(STAT_NAME.attack)}
         />
       </div>
     </>
