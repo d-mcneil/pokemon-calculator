@@ -6,4 +6,4 @@
   
 [See Project Live](https://d-mcneil.github.io/pokemon-calculator/) 
   
-![Pokémon Stat Calculator Banner](https://github.com/d-mcneil/pokemon-calculator/assets/108340538/be682bb7-614d-447d-b601-e34f077b445d)
+![Pokémon Stat Calculator Banner](https://github.com/d-mcneil/pokemon-calculator/assets/108340538/7200fc62-de7c-493a-97c1-75c9f4e5e642)
