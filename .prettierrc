@@ -1,0 +1,17 @@
+{
+    "semi": true,
+    "tabWidth": 4,
+    "printWidth": 80,
+    "singleQuote": true,
+    "trailingComma": "es5",
+    "bracketSameLine": false,
+    "singleAttributePerLine": true,
+    "arrowParens": "avoid",
+    "bracketSpacing": true,
+    "overrides": [
+        {
+            "files": "*",
+            "options": {}
+        }
+    ]
+}
