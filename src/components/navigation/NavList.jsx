@@ -1,3 +1,10 @@
 import React from 'react';
 
-export default ({ children }) => <ul id="nav-list">{children}</ul>;
+export default ({ id = '', className = '', children }) => (
+    <ul
+        id={id || undefined}
+        className={`nav-list${className ? ` ${className}` : ''}`}
+    >
+        {children}
+    </ul>
+);

@@ -1,10 +1,10 @@
 import React from 'react';
 
 export default ({ id = '', className = '', children }) => (
-    <nav
+    <div
         id={id || undefined}
-        className={`nav-bar${className ? ` ${className}` : ''}`}
+        className={`nav-logo${className ? ` ${navBarClassName}` : ''}`}
     >
         {children}
-    </nav>
+    </div>
 );

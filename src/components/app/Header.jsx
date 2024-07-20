@@ -1,9 +1,9 @@
 import React from 'react';
 
-import Navigation from '@components/Navigation';
+import NavMain from '@/components/navigation/NavMain';
 
 export default () => (
     <header>
-        <Navigation />
+        <NavMain />
     </header>
 );
