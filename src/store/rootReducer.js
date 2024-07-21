@@ -1,9 +1,9 @@
 import { combineSlices } from '@reduxjs/toolkit';
 
-// import slice from './slices/slice';
+import pokemon from './slices/pokemon';
 
 const rootReducer = combineSlices({
-    // slice
+    pokemon,
 });
 
 export default rootReducer;

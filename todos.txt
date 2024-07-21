@@ -1,0 +1,9 @@
+TODO: turn nature into api call?
+TODO: turn pokemon api call into constants?
+
+
+
+TODO: how can I make ev the default landing page and push to ev if the user goes to home
+
+
+TODO: toggle generation for different base stats for generation
