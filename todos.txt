@@ -7,3 +7,7 @@ TODO: how can I make ev the default landing page and push to ev if the user goes
 
 
 TODO: toggle generation for different base stats for generation
+
+
+TODO: allow invalid stats toggle (default to false)
+TODO: allow passing classname to NavLink component (can this also be done for Link component) https://reactrouter.com/en/main/components/nav-link
